@@ -3,31 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>zk-dubbo-demo</artifactId>
+        <artifactId>credit</artifactId>
         <groupId>com.smallAttr.github</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
 
-    <artifactId>consumer</artifactId>
-
+    <artifactId>client</artifactId>
 
     <dependencies>
+        <!-- Spring Boot Dubbo 依赖 -->
         <dependency>
-            <groupId>com.smallAttr.github</groupId>
-            <artifactId>api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>io.dubbo.springboot</groupId>
+            <artifactId>spring-boot-starter-dubbo</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${springboot.version}</version>
-            </plugin>
-        </plugins>
-    </build>
+
 </project>
