@@ -2,7 +2,6 @@ package com.credit.gateway.controller;
 
 import com.credit.gateway.annotation.Sign;
 import com.credit.gateway.impl.ConsumerCreditBankLoanService;
-import com.credit.gateway.manager.BankCreditBusinessManager;
 import com.google.gson.Gson;
 import common.credit.format.Document;
 import common.credit.format.DocumentInput;
@@ -24,9 +23,6 @@ public class BankCreditLoanController {
 
     @Autowired
     private ConsumerCreditBankLoanService creditBankLoanService;
-
-    @Autowired
-    private BankCreditBusinessManager manager;
 
 
     @PostMapping(value = "/apply_notify", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)

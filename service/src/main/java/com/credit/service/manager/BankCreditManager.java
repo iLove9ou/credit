@@ -65,6 +65,7 @@ public class BankCreditManager {
             BankCreditHeaderResponse headerResponse = headerResponseMapper.selectByRequestId(requestId);
 
             if (headerResponse == null) {
+                Document document = new Document();
                 return null;
             }
             BankCreditBodyResponse bodyResponse = bodyResponseMapper.selectByRequestId(requestId);
@@ -98,6 +99,9 @@ public class BankCreditManager {
         headerRequest.setInputcharset(documentInput.getRequest().getHead().getInputCharset());
         headerRequest.setReqmsgid(documentInput.getRequest().getHead().getReqMsgId());
         headerRequest.setReqtime(documentInput.getRequest().getHead().getRespTime());
+        headerRequest.setVersion(documentInput.getRequest().getHead().getVersion());
+        headerRequest.setSigntype(documentInput.getRequest().getHead().getSignType());
+        headerRequest.setInputcharset(documentInput.getRequest().getHead().getInputCharset());
         headerRequestMapper.insertSelective(headerRequest);
 
         BankCreditApplyNotifyRequest applyNotifyRequest = new BankCreditApplyNotifyRequest();

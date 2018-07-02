@@ -10,6 +10,7 @@ public class Body implements Serializable {
 
     private String applyNo;
     private String requestId;
+    private ResultInfo resultInfo;
 
     public String getApplyNo() {
         return applyNo;
@@ -34,8 +35,5 @@ public class Body implements Serializable {
     public void setResultInfo(ResultInfo resultInfo) {
         this.resultInfo = resultInfo;
     }
-
-    private ResultInfo resultInfo;
-
 
 }

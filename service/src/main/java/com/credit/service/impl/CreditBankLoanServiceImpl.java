@@ -13,20 +13,20 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
 
     @Autowired
     private BankCreditManager manager;
+
     /*
      * 初审通知请求，网商银行-银行机构
      */
     @Override
-    public Document applyNotify(DocumentInput document) {
-
-        String requestId = document.getRequest().getHead().getReqMsgId();
-        String appId = document.getRequest().getHead().getAppId();
-        String funcKey = document.getRequest().getHead().getFunction();
+    public Document applyNotify(DocumentInput documentInput) {
+        String requestId = documentInput.getRequest().getHead().getReqMsgId();
+        String appId = documentInput.getRequest().getHead().getAppId();
+        String funcKey = documentInput.getRequest().getHead().getFunction();
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.INVLID_SIGN.getCode());
         info.setResultMsg(BizErrorCode.INVLID_SIGN.getMessage());
-        manager.addDocument(document);
+        manager.addDocument(documentInput);
         return manager.getDocuemnt(requestId, appId, funcKey, sign, info);
     }
 
@@ -34,11 +34,11 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
      * 初审数据上传，银行机构-网商银行
      */
     @Override
-    public Document approveUpload(DocumentInput document) {
+    public Document approveUpload(DocumentInput documentInput) {
 
-        String requestId = document.getRequest().getHead().getReqMsgId();
-        String appId = document.getRequest().getHead().getAppId();
-        String funcKey = document.getRequest().getHead().getFunction();
+        String requestId = documentInput.getRequest().getHead().getReqMsgId();
+        String appId = documentInput.getRequest().getHead().getAppId();
+        String funcKey = documentInput.getRequest().getHead().getFunction();
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.SUCCESS.getCode());
@@ -50,11 +50,11 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
      * 终审通知，网商银行-银行机构
      */
     @Override
-    public Document finalNotify(DocumentInput document) {
+    public Document finalNotify(DocumentInput documentInput) {
 
-        String requestId = document.getRequest().getHead().getReqMsgId();
-        String appId = document.getRequest().getHead().getAppId();
-        String funcKey = document.getRequest().getHead().getFunction();
+        String requestId = documentInput.getRequest().getHead().getReqMsgId();
+        String appId = documentInput.getRequest().getHead().getAppId();
+        String funcKey = documentInput.getRequest().getHead().getFunction();
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.NOT_RECOGNIZE_KEY_ITEM.getCode());
@@ -66,11 +66,11 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
      * 终审确认，银行机构-网商银行
      */
     @Override
-    public Document finalConfirm(DocumentInput document) {
+    public Document finalConfirm(DocumentInput documentInput) {
 
-        String requestId = document.getRequest().getHead().getReqMsgId();
-        String appId = document.getRequest().getHead().getAppId();
-        String funcKey = document.getRequest().getHead().getFunction();
+        String requestId = documentInput.getRequest().getHead().getReqMsgId();
+        String appId = documentInput.getRequest().getHead().getAppId();
+        String funcKey = documentInput.getRequest().getHead().getFunction();
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.PARAMS_ERROR.getCode());
