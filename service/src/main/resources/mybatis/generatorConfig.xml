@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="mybatis/generator.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="${mapper.plugin}">
+            <property name="mappers" value="${mapper.Mapper}"/>
+        </plugin>
+
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.connectionURL}"
+                        userId="${jdbc.userId}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="${targetModelPackage}" targetProject="${targetModelProject}"/>
+
+        <sqlMapGenerator targetPackage="${targetXMLPackage}"  targetProject="${targetXMLProject}"/>
+
+        <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetMapperProject}" type="XMLMAPPER" />
+
+
+
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table  tableName="app_audit" domainObjectName="APPAudit">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+
+    </context>
+</generatorConfiguration>
