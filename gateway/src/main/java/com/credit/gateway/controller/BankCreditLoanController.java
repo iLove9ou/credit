@@ -31,7 +31,7 @@ public class BankCreditLoanController {
 
     @PostMapping(value = "/apply_notify", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)
     @Sign
-    public Document apply_notify(@RequestBody DocumentInput input) {
+    public Document applyNotify(@RequestBody DocumentInput input) {
 
         logger.info("apply_notify " + " request: " + new Gson().toJson(input));
         Document document = creditBankLoanService.applyNotify(input);
@@ -41,7 +41,7 @@ public class BankCreditLoanController {
 
     @PostMapping(value = "/approve_upload", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)
     @Sign
-    public Document approve_upload(@RequestBody DocumentInput input) {
+    public Document approveUpload(@RequestBody DocumentInput input) {
         logger.info("approve_upload " + " request: " + new Gson().toJson(input));
         Document document = creditBankLoanService.approveUpload(input);
         logger.info("approve_upload " + "response: " + new Gson().toJson(document));
@@ -50,7 +50,7 @@ public class BankCreditLoanController {
 
     @PostMapping(value = "/approveack_notify", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)
     @Sign
-    public Document approveack_notify(@RequestBody DocumentInput input) {
+    public Document approveackNotify(@RequestBody DocumentInput input) {
         logger.info("approveack_notify " + " request: " + new Gson().toJson(input));
         Document document = creditBankLoanService.finalNotify(input);
         logger.info("approveack_notify " + "response: " + new Gson().toJson(document));
@@ -59,7 +59,7 @@ public class BankCreditLoanController {
 
     @PostMapping(value = "/approveack_confirm", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)
     @Sign
-    public Document approveack_confirm(@RequestBody DocumentInput input) {
+    public Document approveackConfirm(@RequestBody DocumentInput input) {
         logger.info("approveack_confirm " + " request: " + new Gson().toJson(input));
         Document document = creditBankLoanService.finalConfirm(input);
         logger.info("approveack_confirm " + "response: " + new Gson().toJson(document));

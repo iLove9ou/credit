@@ -160,4 +160,6 @@ public class BankCreditHeaderRequest {
     public void setReserve(String reserve) {
         this.reserve = reserve;
     }
+
+
 }

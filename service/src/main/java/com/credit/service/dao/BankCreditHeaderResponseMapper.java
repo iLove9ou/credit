@@ -10,7 +10,9 @@ import java.util.List;
 @Mapper
 public interface BankCreditHeaderResponseMapper {
 
-    BankCreditHeaderResponse selectByRequestId(@Param("requestId") String requestId);
+    BankCreditHeaderResponse selectByRequestId(@Param("reqMsgId") String reqMsgId);
+
+    void insertSelective(BankCreditHeaderResponse record);
 
     int countByExample(BankCreditHeaderResponseExample example);
 

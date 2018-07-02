@@ -19,13 +19,14 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     @Override
     public Document applyNotify(DocumentInput document) {
 
-        String requestId = "";
-        String appId = "app";
-        String funcKey = "funcKey";
+        String requestId = document.getRequest().getHead().getReqMsgId();
+        String appId = document.getRequest().getHead().getAppId();
+        String funcKey = document.getRequest().getHead().getFunction();
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.INVLID_SIGN.getCode());
         info.setResultMsg(BizErrorCode.INVLID_SIGN.getMessage());
+        manager.addDocument(document);
         return manager.getDocuemnt(requestId, appId, funcKey, sign, info);
     }
 
@@ -35,9 +36,9 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     @Override
     public Document approveUpload(DocumentInput document) {
 
-        String requestId = "";
-        String appId = "app";
-        String funcKey = "funcKey";
+        String requestId = document.getRequest().getHead().getReqMsgId();
+        String appId = document.getRequest().getHead().getAppId();
+        String funcKey = document.getRequest().getHead().getFunction();
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.SUCCESS.getCode());
@@ -51,9 +52,9 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     @Override
     public Document finalNotify(DocumentInput document) {
 
-        String requestId = "";
-        String appId = "app";
-        String funcKey = "funcKey";
+        String requestId = document.getRequest().getHead().getReqMsgId();
+        String appId = document.getRequest().getHead().getAppId();
+        String funcKey = document.getRequest().getHead().getFunction();
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.NOT_RECOGNIZE_KEY_ITEM.getCode());
@@ -66,9 +67,10 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
      */
     @Override
     public Document finalConfirm(DocumentInput document) {
-        String requestId = "";
-        String appId = "app";
-        String funcKey = "funcKey";
+
+        String requestId = document.getRequest().getHead().getReqMsgId();
+        String appId = document.getRequest().getHead().getAppId();
+        String funcKey = document.getRequest().getHead().getFunction();
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.PARAMS_ERROR.getCode());

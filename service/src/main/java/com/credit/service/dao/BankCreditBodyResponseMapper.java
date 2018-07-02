@@ -12,6 +12,8 @@ public interface BankCreditBodyResponseMapper {
 
     BankCreditBodyResponse selectByRequestId(@Param("requestId") String requestId);
 
+    void insertSelective(BankCreditBodyResponse record);
+
     int countByExample(BankCreditBodyResponseExample example);
 
     int deleteByExample(BankCreditBodyResponseExample example);

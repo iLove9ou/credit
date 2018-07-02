@@ -169,4 +169,64 @@
     from bank_credit_body_response
     where requestId=#{requestId}
   </select>
+
+  <insert id="insertSelective" parameterType="com.credit.service.model.entity.BankCreditHeaderResponse" >
+    insert into bank_credit_header_response
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="appid != null" >
+        appid,
+      </if>
+      <if test="function != null" >
+        function,
+      </if>
+      <if test="resptime != null" >
+        resptime,
+      </if>
+      <if test="resptimezone != null" >
+        resptimezone,
+      </if>
+      <if test="signtype != null" >
+        signtype,
+      </if>
+      <if test="inputcharset != null" >
+        inputcharset,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="reserve != null" >
+        reserve,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="appid != null" >
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="function != null" >
+        #{function,jdbcType=VARCHAR},
+      </if>
+      <if test="resptime != null" >
+        #{resptime,jdbcType=VARCHAR},
+      </if>
+      <if test="resptimezone != null" >
+        #{resptimezone,jdbcType=VARCHAR},
+      </if>
+      <if test="signtype != null" >
+        #{signtype,jdbcType=VARCHAR},
+      </if>
+      <if test="inputcharset != null" >
+        #{inputcharset,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="inputcharset != null" >
+        #{inputcharset,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve != null" >
+        #{reserve,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
 </mapper>

@@ -12,6 +12,8 @@ public interface BankCreditHeaderRequestMapper {
 
     BankCreditHeaderRequest selectByRequestId(@Param("requestId") String requestId);
 
+    void insertSelective(BankCreditHeaderRequest record);
+
     int countByExample(BankCreditHeaderRequestExample example);
 
     int deleteByExample(BankCreditHeaderRequestExample example);

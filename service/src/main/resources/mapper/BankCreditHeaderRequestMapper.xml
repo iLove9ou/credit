@@ -191,4 +191,73 @@
     from bank_credit_header_request
     where requestId=#{requestId}
   </select>
+
+  <insert id="insertSelective" parameterType="com.credit.service.model.entity.BankCreditHeaderRequest" >
+    insert into bank_credit_header_request
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appid != null" >
+        appid,
+      </if>
+      <if test="function != null" >
+        function,
+      </if>
+      <if test="reqtime != null" >
+        reqtime,
+      </if>
+      <if test="reqtimezone != null" >
+        reqtimezone,
+      </if>
+      <if test="reqmsgid != null" >
+        reqmsgid,
+      </if>
+      <if test="signtype != null" >
+        signtype,
+      </if>
+      <if test="inputcharset != null" >
+        inputcharset,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="reserve != null" >
+        reserve
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="appid != null" >
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="function != null" >
+        #{function,jdbcType=VARCHAR},
+      </if>
+      <if test="reqtime != null" >
+        #{reqtime,jdbcType=VARCHAR},
+      </if>
+      <if test="reqtimezone != null" >
+        #{reqtimezone,jdbcType=VARCHAR},
+      </if>
+      <if test="signtype != null" >
+        #{signtype,jdbcType=VARCHAR},
+      </if>
+      <if test="inputcharset != null" >
+        #{inputcharset,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="inputcharset != null" >
+        #{inputcharset,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve != null" >
+        #{reserve,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+
 </mapper>

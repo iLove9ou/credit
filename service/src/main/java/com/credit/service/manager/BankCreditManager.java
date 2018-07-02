@@ -2,7 +2,9 @@ package com.credit.service.manager;
 
 
 import com.credit.service.dao.*;
+import com.credit.service.model.entity.BankCreditApplyNotifyRequest;
 import com.credit.service.model.entity.BankCreditBodyResponse;
+import com.credit.service.model.entity.BankCreditHeaderRequest;
 import com.credit.service.model.entity.BankCreditHeaderResponse;
 import com.credit.service.utils.DateUtil;
 import common.credit.constants.Constants;
@@ -62,7 +64,14 @@ public class BankCreditManager {
         } else {
             BankCreditHeaderResponse headerResponse = headerResponseMapper.selectByRequestId(requestId);
 
+            if (headerResponse == null) {
+                return null;
+            }
             BankCreditBodyResponse bodyResponse = bodyResponseMapper.selectByRequestId(requestId);
+
+            if (bodyResponse == null) {
+                return null;
+            }
 
             Head head = new Head();
             Body body = new Body();
@@ -79,8 +88,25 @@ public class BankCreditManager {
             document.setSignature(signature);
             return document;
         }
+    }
 
+    public void addDocument(DocumentInput documentInput) {
 
+        BankCreditHeaderRequest headerRequest = new BankCreditHeaderRequest();
+        headerRequest.setAppid(documentInput.getRequest().getHead().getAppId());
+        headerRequest.setFunction(documentInput.getRequest().getHead().getFunction());
+        headerRequest.setInputcharset(documentInput.getRequest().getHead().getInputCharset());
+        headerRequest.setReqmsgid(documentInput.getRequest().getHead().getReqMsgId());
+        headerRequest.setReqtime(documentInput.getRequest().getHead().getRespTime());
+        headerRequestMapper.insertSelective(headerRequest);
+
+        BankCreditApplyNotifyRequest applyNotifyRequest = new BankCreditApplyNotifyRequest();
+        applyNotifyRequest.setApplyno(documentInput.getRequest().getBody().getApplyNo());
+        applyNotifyRequest.setCertname("certname");
+        applyNotifyRequest.setCerttype("1");
+        applyNotifyRequest.setBusinessmodel("model");
+        applyNotifyRequest.setExtinfo("ext info");
+        applynotifyRequestMapper.insertSelective(applyNotifyRequest);
     }
 
     private Head getHead(String appId, String function, String reqMsgId, String reverse) {
