@@ -29,4 +29,7 @@ public class Constants {
     //MQ消息有效时间
     public static final int VALID_TIME = ONE_MINUTE;
 
+    // debug开关开启
+    public static final int IS_DEBUG = 0;
+
 }

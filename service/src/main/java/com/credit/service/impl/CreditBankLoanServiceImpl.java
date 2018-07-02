@@ -7,9 +7,8 @@ import common.credit.format.Document;
 import common.credit.format.DocumentInput;
 import common.credit.format.ResultInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
+@com.alibaba.dubbo.config.annotation.Service(version = "1.0.0")
 public class CreditBankLoanServiceImpl implements CreditBankLoanService {
 
     @Autowired
@@ -20,14 +19,14 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     @Override
     public Document applyNotify(DocumentInput document) {
 
-        // TODO 发送请求
+        String requestId = "";
         String appId = "app";
         String funcKey = "funcKey";
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.INVLID_SIGN.getCode());
         info.setResultMsg(BizErrorCode.INVLID_SIGN.getMessage());
-        return manager.getDocuemnt(appId, funcKey, sign, info);
+        return manager.getDocuemnt(requestId, appId, funcKey, sign, info);
     }
 
     /*
@@ -36,14 +35,14 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     @Override
     public Document approveUpload(DocumentInput document) {
 
-        // TODO 发送请求
+        String requestId = "";
         String appId = "app";
         String funcKey = "funcKey";
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.SUCCESS.getCode());
         info.setResultMsg(BizErrorCode.SUCCESS.getMessage());
-        return manager.getDocuemnt(appId, funcKey, sign, info);
+        return manager.getDocuemnt(requestId, appId, funcKey, sign, info);
     }
 
     /*
@@ -52,14 +51,14 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     @Override
     public Document finalNotify(DocumentInput document) {
 
-        // TODO 发送请求
+        String requestId = "";
         String appId = "app";
         String funcKey = "funcKey";
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.NOT_RECOGNIZE_KEY_ITEM.getCode());
         info.setResultMsg(BizErrorCode.NOT_RECOGNIZE_KEY_ITEM.getMessage());
-        return manager.getDocuemnt(appId, funcKey, sign, info);
+        return manager.getDocuemnt(requestId, appId, funcKey, sign, info);
     }
 
     /*
@@ -67,15 +66,14 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
      */
     @Override
     public Document finalConfirm(DocumentInput document) {
-
-        // TODO 发送请求
+        String requestId = "";
         String appId = "app";
         String funcKey = "funcKey";
         String sign = "sign";
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.PARAMS_ERROR.getCode());
         info.setResultMsg(BizErrorCode.PARAMS_ERROR.getMessage());
-        return manager.getDocuemnt(appId, funcKey, sign, info);
+        return manager.getDocuemnt(requestId, appId, funcKey, sign, info);
     }
 
 }

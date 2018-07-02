@@ -7,6 +7,7 @@ import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
+@org.apache.ibatis.annotations.Mapper
 public interface BankCreditCodeMapper extends Mapper<BankCreditCode> {
     int countByExample(BankCreditCodeExample example);
 

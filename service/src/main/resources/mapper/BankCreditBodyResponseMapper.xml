@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.credit.service.BankCreditHeaderRequestMapper" >
-  <resultMap id="BaseResultMap" type="com.credit.service.model.entity.BankCreditHeaderRequest" >
+<mapper namespace="com.credit.service.BankCreditBodyResponseMapper" >
+  <resultMap id="BaseResultMap" type="com.credit.service.model.entity.BankCreditBodyResponse" >
     <!--
       WARNING - @mbg.generated
     -->
-    <result column="id" property="id" jdbcType="BIGINT" />
-    <result column="appId" property="appid" jdbcType="VARCHAR" />
-    <result column="function" property="function" jdbcType="VARCHAR" />
-    <result column="reqTime" property="reqtime" jdbcType="VARCHAR" />
-    <result column="reqTimeZone" property="reqtimezone" jdbcType="VARCHAR" />
-    <result column="reqMsgId" property="reqmsgid" jdbcType="VARCHAR" />
-    <result column="signType" property="signtype" jdbcType="VARCHAR" />
-    <result column="inputCharset" property="inputcharset" jdbcType="VARCHAR" />
-    <result column="version" property="version" jdbcType="VARCHAR" />
-    <result column="reserve" property="reserve" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="requestId" property="requestid" jdbcType="VARCHAR" />
+    <result column="resultCode" property="resultcode" jdbcType="VARCHAR" />
+    <result column="resultMsg" property="resultmsg" jdbcType="VARCHAR" />
+    <result column="resultStatus" property="resultstatus" jdbcType="VARCHAR" />
+    <result column="retry" property="retry" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
@@ -84,10 +80,9 @@
     <!--
       WARNING - @mbg.generated
     -->
-    id, appId, function, reqTime, reqTimeZone, reqMsgId, signType, inputCharset, version, 
-    reserve
+    id, requestId, resultCode, resultMsg, resultStatus, retry
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.credit.service.dao.example.BankCreditHeaderRequestExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.credit.service.dao.example.BankCreditBodyResponseExample" >
     <!--
       WARNING - @mbg.generated
     -->
@@ -96,7 +91,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from bank_credit_header_request
+    from bank_credit_body_response
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -104,20 +99,20 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.credit.service.dao.example.BankCreditHeaderRequestExample" >
+  <delete id="deleteByExample" parameterType="com.credit.service.dao.example.BankCreditBodyResponseExample" >
     <!--
       WARNING - @mbg.generated
     -->
-    delete from bank_credit_header_request
+    delete from bank_credit_body_response
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <select id="countByExample" parameterType="com.credit.service.dao.example.BankCreditHeaderRequestExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.credit.service.dao.example.BankCreditBodyResponseExample" resultType="java.lang.Integer" >
     <!--
       WARNING - @mbg.generated
     -->
-    select count(*) from bank_credit_header_request
+    select count(*) from bank_credit_body_response
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -126,37 +121,25 @@
     <!--
       WARNING - @mbg.generated
     -->
-    update bank_credit_header_request
+    update bank_credit_body_response
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.appid != null" >
-        appId = #{record.appid,jdbcType=VARCHAR},
+      <if test="record.requestid != null" >
+        requestId = #{record.requestid,jdbcType=VARCHAR},
       </if>
-      <if test="record.function != null" >
-        function = #{record.function,jdbcType=VARCHAR},
+      <if test="record.resultcode != null" >
+        resultCode = #{record.resultcode,jdbcType=VARCHAR},
       </if>
-      <if test="record.reqtime != null" >
-        reqTime = #{record.reqtime,jdbcType=VARCHAR},
+      <if test="record.resultmsg != null" >
+        resultMsg = #{record.resultmsg,jdbcType=VARCHAR},
       </if>
-      <if test="record.reqtimezone != null" >
-        reqTimeZone = #{record.reqtimezone,jdbcType=VARCHAR},
+      <if test="record.resultstatus != null" >
+        resultStatus = #{record.resultstatus,jdbcType=VARCHAR},
       </if>
-      <if test="record.reqmsgid != null" >
-        reqMsgId = #{record.reqmsgid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.signtype != null" >
-        signType = #{record.signtype,jdbcType=VARCHAR},
-      </if>
-      <if test="record.inputcharset != null" >
-        inputCharset = #{record.inputcharset,jdbcType=VARCHAR},
-      </if>
-      <if test="record.version != null" >
-        version = #{record.version,jdbcType=VARCHAR},
-      </if>
-      <if test="record.reserve != null" >
-        reserve = #{record.reserve,jdbcType=VARCHAR},
+      <if test="record.retry != null" >
+        retry = #{record.retry,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -167,28 +150,15 @@
     <!--
       WARNING - @mbg.generated
     -->
-    update bank_credit_header_request
+    update bank_credit_body_response
     set id = #{record.id,jdbcType=BIGINT},
-      appId = #{record.appid,jdbcType=VARCHAR},
-      function = #{record.function,jdbcType=VARCHAR},
-      reqTime = #{record.reqtime,jdbcType=VARCHAR},
-      reqTimeZone = #{record.reqtimezone,jdbcType=VARCHAR},
-      reqMsgId = #{record.reqmsgid,jdbcType=VARCHAR},
-      signType = #{record.signtype,jdbcType=VARCHAR},
-      inputCharset = #{record.inputcharset,jdbcType=VARCHAR},
-      version = #{record.version,jdbcType=VARCHAR},
-      reserve = #{record.reserve,jdbcType=VARCHAR}
+      requestId = #{record.requestid,jdbcType=VARCHAR},
+      resultCode = #{record.resultcode,jdbcType=VARCHAR},
+      resultMsg = #{record.resultmsg,jdbcType=VARCHAR},
+      resultStatus = #{record.resultstatus,jdbcType=VARCHAR},
+      retry = #{record.retry,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-
-
-
-  <select id="selectByRequestId" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from bank_credit_header_request
-    where requestId=#{requestId}
-  </select>
 </mapper>

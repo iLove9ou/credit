@@ -51,7 +51,11 @@
             <!--<property name="useActualColumnNames" value="false"></property>-->
         <!--</table>-->
 
-        <table  tableName="bank_credit_apply_notify_request" domainObjectName="BankCreditApplynotifyRequest">
+        <!--<table  tableName="bank_credit_apply_notify_request" domainObjectName="BankCreditApplynotifyRequest">-->
+            <!--<property name="useActualColumnNames" value="false"></property>-->
+        <!--</table>-->
+
+        <table  tableName="bank_credit_body_response" domainObjectName="BankCreditBodyResponse">
             <property name="useActualColumnNames" value="false"></property>
         </table>
 

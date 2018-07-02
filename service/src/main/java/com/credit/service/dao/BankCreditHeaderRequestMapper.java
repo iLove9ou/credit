@@ -7,7 +7,11 @@ import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
+@org.apache.ibatis.annotations.Mapper
 public interface BankCreditHeaderRequestMapper extends Mapper<BankCreditHeaderRequest> {
+
+    BankCreditHeaderRequest selectByRequestId(@Param("requestId") String requestId);
+
     int countByExample(BankCreditHeaderRequestExample example);
 
     int deleteByExample(BankCreditHeaderRequestExample example);

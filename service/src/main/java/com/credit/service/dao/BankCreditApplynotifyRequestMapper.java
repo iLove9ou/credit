@@ -9,6 +9,7 @@ import java.util.List;
 
 @org.apache.ibatis.annotations.Mapper
 public interface BankCreditApplynotifyRequestMapper extends Mapper<BankCreditApplynotifyRequest> {
+
     int countByExample(BankCreditApplynotifyRequestExample example);
 
     int deleteByExample(BankCreditApplynotifyRequestExample example);

@@ -2,9 +2,10 @@ package common.credit.format;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 @XmlRootElement(name = "document")
-public class DocumentInput {
+public class DocumentInput implements Serializable {
 
     private Request request;
     private Signature signature;
