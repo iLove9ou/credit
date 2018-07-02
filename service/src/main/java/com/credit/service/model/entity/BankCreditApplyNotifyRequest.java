@@ -1,31 +1,20 @@
 package com.credit.service.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
-
-@Table(name = "bank_credit_apply_notify_request")
-public class BankCreditApplynotifyRequest {
+public class BankCreditApplyNotifyRequest {
     private Long id;
 
-    @Column(name = "requestId")
     private String requestid;
 
-    @Column(name = "applyNo")
     private String applyno;
 
-    @Column(name = "certType")
     private String certtype;
 
-    @Column(name = "certName")
     private String certname;
 
-    @Column(name = "certNo")
     private String certno;
 
-    @Column(name = "businessModel")
     private String businessmodel;
 
-    @Column(name = "extInfo")
     private String extinfo;
 
     /**

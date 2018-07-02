@@ -21,7 +21,7 @@ public class BankCreditManager {
     private BankCreditHeaderRequestMapper headerRequestMapper;
 
     @Resource
-    private BankCreditApplynotifyRequestMapper applynotifyRequestMapper;
+    private BankCreditApplyNotifyRequestMapper applynotifyRequestMapper;
 
     @Resource
     private BankCreditCodeMapper creditCodeMapper;

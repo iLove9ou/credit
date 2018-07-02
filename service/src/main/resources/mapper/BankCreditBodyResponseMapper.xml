@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.credit.service.BankCreditBodyResponseMapper" >
+<mapper namespace="com.credit.service.dao.BankCreditBodyResponseMapper" >
   <resultMap id="BaseResultMap" type="com.credit.service.model.entity.BankCreditBodyResponse" >
     <!--
       WARNING - @mbg.generated
@@ -161,4 +161,12 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+
+  <select id="selectByRequestId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from bank_credit_body_response
+    where requestId=#{requestId}
+  </select>
 </mapper>

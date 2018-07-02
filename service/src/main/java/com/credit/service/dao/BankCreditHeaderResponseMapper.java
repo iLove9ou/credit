@@ -2,13 +2,13 @@ package com.credit.service.dao;
 
 import com.credit.service.dao.example.BankCreditHeaderResponseExample;
 import com.credit.service.model.entity.BankCreditHeaderResponse;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-@org.apache.ibatis.annotations.Mapper
-public interface BankCreditHeaderResponseMapper extends Mapper<BankCreditHeaderResponse> {
+@Mapper
+public interface BankCreditHeaderResponseMapper {
 
     BankCreditHeaderResponse selectByRequestId(@Param("requestId") String requestId);
 

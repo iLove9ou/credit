@@ -2,13 +2,13 @@ package com.credit.service.dao;
 
 import com.credit.service.dao.example.BankCreditApproveackConfirmRequestExample;
 import com.credit.service.model.entity.BankCreditApproveackConfirmRequest;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-@org.apache.ibatis.annotations.Mapper
-public interface BankCreditApproveackConfirmRequestMapper extends Mapper<BankCreditApproveackConfirmRequest> {
+@Mapper
+public interface BankCreditApproveackConfirmRequestMapper {
     int countByExample(BankCreditApproveackConfirmRequestExample example);
 
     int deleteByExample(BankCreditApproveackConfirmRequestExample example);

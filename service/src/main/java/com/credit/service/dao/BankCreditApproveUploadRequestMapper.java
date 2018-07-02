@@ -2,12 +2,14 @@ package com.credit.service.dao;
 
 import com.credit.service.dao.example.BankCreditApproveUploadRequestExample;
 import com.credit.service.model.entity.BankCreditApproveUploadRequest;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
-@org.apache.ibatis.annotations.Mapper
-public interface BankCreditApproveUploadRequestMapper extends Mapper<BankCreditApproveUploadRequest> {
+
+@Mapper
+public interface BankCreditApproveUploadRequestMapper {
+
     int countByExample(BankCreditApproveUploadRequestExample example);
 
     int deleteByExample(BankCreditApproveUploadRequestExample example);

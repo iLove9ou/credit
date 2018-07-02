@@ -1,24 +1,15 @@
 package com.credit.service.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Table(name = "bank_credit_body_response")
 public class BankCreditBodyResponse {
-    @Id
+
     private Long id;
 
-    @Column(name = "requestId")
     private String requestid;
 
-    @Column(name = "resultCode")
     private String resultcode;
 
-    @Column(name = "resultMsg")
     private String resultmsg;
 
-    @Column(name = "resultStatus")
     private String resultstatus;
 
     private Integer retry;
