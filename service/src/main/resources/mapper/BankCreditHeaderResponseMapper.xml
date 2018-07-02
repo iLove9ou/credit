@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.credit.service.BankCreditHeaderResponseMapper" >
+  <resultMap id="BaseResultMap" type="com.credit.service.model.entity.BankCreditHeaderResponse" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" property="id" jdbcType="BIGINT" />
+    <result column="appId" property="appid" jdbcType="VARCHAR" />
+    <result column="function" property="function" jdbcType="VARCHAR" />
+    <result column="respTime" property="resptime" jdbcType="VARCHAR" />
+    <result column="respTimeZone" property="resptimezone" jdbcType="VARCHAR" />
+    <result column="reqMsgId" property="reqmsgid" jdbcType="VARCHAR" />
+    <result column="signType" property="signtype" jdbcType="VARCHAR" />
+    <result column="inputCharset" property="inputcharset" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="reserve" property="reserve" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, appId, function, respTime, respTimeZone, reqMsgId, signType, inputCharset, version, 
+    reserve
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.credit.service.dao.example.BankCreditHeaderResponseExample" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bank_credit_header_response
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.credit.service.dao.example.BankCreditHeaderResponseExample" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    delete from bank_credit_header_response
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <select id="countByExample" parameterType="com.credit.service.dao.example.BankCreditHeaderResponseExample" resultType="java.lang.Integer" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    select count(*) from bank_credit_header_response
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update bank_credit_header_response
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.appid != null" >
+        appId = #{record.appid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.function != null" >
+        function = #{record.function,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resptime != null" >
+        respTime = #{record.resptime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resptimezone != null" >
+        respTimeZone = #{record.resptimezone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reqmsgid != null" >
+        reqMsgId = #{record.reqmsgid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signtype != null" >
+        signType = #{record.signtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inputcharset != null" >
+        inputCharset = #{record.inputcharset,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reserve != null" >
+        reserve = #{record.reserve,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update bank_credit_header_response
+    set id = #{record.id,jdbcType=BIGINT},
+      appId = #{record.appid,jdbcType=VARCHAR},
+      function = #{record.function,jdbcType=VARCHAR},
+      respTime = #{record.resptime,jdbcType=VARCHAR},
+      respTimeZone = #{record.resptimezone,jdbcType=VARCHAR},
+      reqMsgId = #{record.reqmsgid,jdbcType=VARCHAR},
+      signType = #{record.signtype,jdbcType=VARCHAR},
+      inputCharset = #{record.inputcharset,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      reserve = #{record.reserve,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

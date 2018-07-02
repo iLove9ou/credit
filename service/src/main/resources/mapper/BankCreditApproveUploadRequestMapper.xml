@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.credit.service.BankCreditApproveUploadRequestMapper" >
+  <resultMap id="BaseResultMap" type="com.credit.service.model.entity.BankCreditApproveUploadRequest" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="requestId" property="requestid" jdbcType="VARCHAR" />
+    <result column="applyNo" property="applyno" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="certName" property="certname" jdbcType="VARCHAR" />
+    <result column="certNo" property="certno" jdbcType="VARCHAR" />
+    <result column="objectContent" property="objectcontent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, requestId, applyNo, category, certName, certNo, objectContent
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.credit.service.dao.example.BankCreditApproveUploadRequestExample" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bank_credit_approve_upload_request
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.credit.service.dao.example.BankCreditApproveUploadRequestExample" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    delete from bank_credit_approve_upload_request
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <select id="countByExample" parameterType="com.credit.service.dao.example.BankCreditApproveUploadRequestExample" resultType="java.lang.Integer" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    select count(*) from bank_credit_approve_upload_request
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update bank_credit_approve_upload_request
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.requestid != null" >
+        requestId = #{record.requestid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyno != null" >
+        applyNo = #{record.applyno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null" >
+        category = #{record.category,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certname != null" >
+        certName = #{record.certname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certno != null" >
+        certNo = #{record.certno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectcontent != null" >
+        objectContent = #{record.objectcontent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    update bank_credit_approve_upload_request
+    set id = #{record.id,jdbcType=BIGINT},
+      requestId = #{record.requestid,jdbcType=VARCHAR},
+      applyNo = #{record.applyno,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=VARCHAR},
+      certName = #{record.certname,jdbcType=VARCHAR},
+      certNo = #{record.certno,jdbcType=VARCHAR},
+      objectContent = #{record.objectcontent,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

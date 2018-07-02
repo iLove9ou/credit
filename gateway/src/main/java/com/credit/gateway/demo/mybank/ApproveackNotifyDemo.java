@@ -4,32 +4,13 @@
  */
 package com.credit.gateway.demo.mybank;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alipay.sdk.domain.mybankext.creditdata.CreditDeb;
-import com.alipay.sdk.domain.mybankext.creditdata.CreditResult;
-import com.alipay.sdk.domain.mybankext.creditdata.CreditResum;
-import com.alipay.sdk.domain.mybankext.creditdata.EndowmentInfo;
-import com.alipay.sdk.domain.mybankext.creditdata.EntityDebInfo;
-import com.alipay.sdk.domain.mybankext.creditdata.EntityDebRes;
-import com.alipay.sdk.domain.mybankext.creditdata.HouseInfo;
-import com.alipay.sdk.domain.mybankext.creditdata.Person;
-import com.alipay.sdk.domain.mybankext.creditdata.PersonalCreditReport;
-import com.alipay.sdk.domain.mybankext.creditdata.ReportLogDetail;
-import com.alipay.sdk.domain.mybankext.creditdata.WorkInfo;
-import com.alipay.sdk.enums.AssureCodeEnum;
-import com.alipay.sdk.enums.DebUseCodeEnum;
-import com.alipay.sdk.enums.EndowmentStatusEnum;
-import com.alipay.sdk.enums.PayCodeEnum;
-import com.alipay.sdk.enums.StatusEnum;
-import com.alipay.sdk.enums.WhetherEnum;
+import com.alipay.sdk.domain.mybankext.creditdata.*;
+import com.alipay.sdk.enums.*;
+
+import java.math.BigDecimal;
+import java.util.*;
 
 
 public class ApproveackNotifyDemo {
@@ -40,7 +21,7 @@ public class ApproveackNotifyDemo {
         creditResult.setApplyId("789456");
         creditResult.setCertNo("411381199209044411");
         creditResult.setIdCode("15");
-        creditResult.setName(" 我的家乡 ");
+        creditResult.setName(" 授信申请 ");
         creditResult.setOrgCode("1234");
         creditResult.setQueryDate(new Date());
         creditResult.setReportDate(new Date());
