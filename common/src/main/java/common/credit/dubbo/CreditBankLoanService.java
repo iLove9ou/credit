@@ -1,6 +1,14 @@
 package common.credit.dubbo;
 
 
+import com.alipay.sdk.request.MybankCreditLoanApplyNotifyRequest;
+import com.alipay.sdk.request.MybankCreditLoanApproveUploadRequest;
+import com.alipay.sdk.request.MybankCreditLoanApproveackConfirmRequest;
+import com.alipay.sdk.request.MybankCreditLoanApproveackNotifyRequest;
+import com.alipay.sdk.response.MybankCreditLoanApplyNotifyResponse;
+import com.alipay.sdk.response.MybankCreditLoanApproveUploadResponse;
+import com.alipay.sdk.response.MybankCreditLoanApproveackConfirmResponse;
+import com.alipay.sdk.response.MybankCreditLoanApproveackNotifyResponse;
 import common.credit.format.Document;
 import common.credit.format.DocumentInput;
 
@@ -24,5 +32,16 @@ public interface CreditBankLoanService {
      * 终审确认，银行机构-网商银行
      */
     public Document finalConfirm(DocumentInput document);
+
+
+    public Document applyNotify(MybankCreditLoanApplyNotifyRequest request, MybankCreditLoanApplyNotifyResponse response);
+
+    public Document approveUpload(MybankCreditLoanApproveUploadRequest request, MybankCreditLoanApproveUploadResponse response);
+
+
+    public Document finalNotify(MybankCreditLoanApproveackNotifyRequest request, MybankCreditLoanApproveackNotifyResponse response);
+
+
+    public Document finalConfirm(MybankCreditLoanApproveackConfirmRequest request, MybankCreditLoanApproveackConfirmResponse response);
 
 }

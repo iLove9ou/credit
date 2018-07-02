@@ -78,4 +78,28 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
         return manager.getDocuemnt(requestId, appId, funcKey, sign, info);
     }
 
+    @Override
+    public Document finalConfirm(com.alipay.sdk.request.MybankCreditLoanApproveackConfirmRequest request,
+                                 com.alipay.sdk.response.MybankCreditLoanApproveackConfirmResponse response) {
+        return null;
+    }
+
+    @Override
+    public Document finalNotify(com.alipay.sdk.request.MybankCreditLoanApproveackNotifyRequest request,
+                                com.alipay.sdk.response.MybankCreditLoanApproveackNotifyResponse response) {
+        return null;
+    }
+
+    @Override
+    public Document approveUpload(com.alipay.sdk.request.MybankCreditLoanApproveUploadRequest request,
+                                  com.alipay.sdk.response.MybankCreditLoanApproveUploadResponse response) {
+        return null;
+    }
+
+    @Override
+    public Document applyNotify(com.alipay.sdk.request.MybankCreditLoanApplyNotifyRequest request,
+                                com.alipay.sdk.response.MybankCreditLoanApplyNotifyResponse response) {
+        return null;
+    }
+
 }
