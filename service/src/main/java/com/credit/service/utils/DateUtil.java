@@ -13,6 +13,10 @@ public class DateUtil {
         return dateString;
     }
 
+    public static String currDate() {
+        return toDate(new Date());
+    }
+
     public static void main(String[] args) {
         System.out.println(toDate(new Date()));
     }

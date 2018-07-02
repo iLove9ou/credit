@@ -1,6 +1,7 @@
 package com.credit.service.manager;
 
 
+import com.credit.service.dao.BankCreditApplynotifyRequestMapper;
 import com.credit.service.utils.DateUtil;
 import common.credit.constants.Constants;
 import common.credit.enums.CharsetEnum;
@@ -8,10 +9,13 @@ import common.credit.enums.SignTypeEnum;
 import common.credit.format.*;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import javax.annotation.Resource;
 
 @Component
-public class BankCreditHandler {
+public class BankCreditManager {
+
+    @Resource
+    private BankCreditApplynotifyRequestMapper applynotifyRequestMapper;
 
     public Document getDocuemnt(String appId,
                                 String funcKey,
@@ -20,12 +24,12 @@ public class BankCreditHandler {
 
         Head head = getHead(appId,
                 funcKey,
-                DateUtil.toDate(new Date()),
+                DateUtil.currDate(),
                 "r");
 
         Body body = new Body();
-        body.setApplyNo(DateUtil.toDate(new Date()));
-        body.setRequestId(DateUtil.toDate(new Date()));
+        body.setApplyNo(DateUtil.currDate());
+        body.setRequestId(DateUtil.currDate());
         body.setResultInfo(resultInfo);
 
         Signature signature = new Signature();
@@ -43,7 +47,7 @@ public class BankCreditHandler {
         Head head = new Head();
         head.setVersion(Constants.SYSTEM_VERSION);
         head.setSignType(SignTypeEnum.RSA.name());
-        head.setRespTime(DateUtil.toDate(new Date()));
+        head.setRespTime(DateUtil.currDate());
         head.setInputCharset(CharsetEnum.UTF8.name());
         head.setAppId(appId);
         head.setFunction(function);

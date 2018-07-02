@@ -1,7 +1,6 @@
 package com.credit.service.impl;
 
-
-import com.credit.service.manager.BankCreditHandler;
+import com.credit.service.manager.BankCreditManager;
 import common.credit.dubbo.CreditBankLoanService;
 import common.credit.enums.BizErrorCode;
 import common.credit.format.Document;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class CreditBankLoanServiceImpl implements CreditBankLoanService {
 
     @Autowired
-    private BankCreditHandler handler;
+    private BankCreditManager manager;
     /*
      * 初审通知请求，网商银行-银行机构
      */
@@ -28,7 +27,7 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.INVLID_SIGN.getCode());
         info.setResultMsg(BizErrorCode.INVLID_SIGN.getMessage());
-        return handler.getDocuemnt(appId, funcKey, sign, info);
+        return manager.getDocuemnt(appId, funcKey, sign, info);
     }
 
     /*
@@ -44,7 +43,7 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.SUCCESS.getCode());
         info.setResultMsg(BizErrorCode.SUCCESS.getMessage());
-        return handler.getDocuemnt(appId, funcKey, sign, info);
+        return manager.getDocuemnt(appId, funcKey, sign, info);
     }
 
     /*
@@ -60,7 +59,7 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.NOT_RECOGNIZE_KEY_ITEM.getCode());
         info.setResultMsg(BizErrorCode.NOT_RECOGNIZE_KEY_ITEM.getMessage());
-        return handler.getDocuemnt(appId, funcKey, sign, info);
+        return manager.getDocuemnt(appId, funcKey, sign, info);
     }
 
     /*
@@ -76,7 +75,7 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
         ResultInfo info = new ResultInfo();
         info.setResultCode(BizErrorCode.PARAMS_ERROR.getCode());
         info.setResultMsg(BizErrorCode.PARAMS_ERROR.getMessage());
-        return handler.getDocuemnt(appId, funcKey, sign, info);
+        return manager.getDocuemnt(appId, funcKey, sign, info);
     }
 
 }
