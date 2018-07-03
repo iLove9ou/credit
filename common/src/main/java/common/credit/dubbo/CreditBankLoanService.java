@@ -23,6 +23,7 @@ public interface CreditBankLoanService {
      * 初审数据上传，银行机构-网商银行
      */
     public Document approveUpload(DocumentInput document);
+
     /*
      * 终审通知，网商银行-银行机构
      */
@@ -33,15 +34,24 @@ public interface CreditBankLoanService {
      */
     public Document finalConfirm(DocumentInput document);
 
-
+    /*
+     * 初审通知请求，网商银行-银行机构
+     */
     public Document applyNotify(MybankCreditLoanApplyNotifyRequest request, MybankCreditLoanApplyNotifyResponse response);
 
+    /*
+     * 初审数据上传，银行机构-网商银行
+     */
     public Document approveUpload(MybankCreditLoanApproveUploadRequest request, MybankCreditLoanApproveUploadResponse response);
 
-
+    /*
+     * 终审通知，网商银行-银行机构
+     */
     public Document finalNotify(MybankCreditLoanApproveackNotifyRequest request, MybankCreditLoanApproveackNotifyResponse response);
 
-
+    /*
+     * 终审确认，银行机构-网商银行
+     */
     public Document finalConfirm(MybankCreditLoanApproveackConfirmRequest request, MybankCreditLoanApproveackConfirmResponse response);
 
 }

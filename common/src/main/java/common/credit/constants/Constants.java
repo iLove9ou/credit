@@ -53,7 +53,8 @@ public class Constants {
     ;
 
 
-    public static final String REQUEST_URL = "";
+    // maybe change in product env.
+    public static final String REQUEST_URL = "http://supergwext-1-64.test.dl.alipaydev.com/HNXT85/HNXT8579142.htm";
 
     // debug开关开启
     public static final int IS_DEBUG = 0;
