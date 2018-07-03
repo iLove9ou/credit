@@ -39,6 +39,8 @@ public class CreditLoanController {
     @PostMapping(value = "/apply_notify", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)
     @Sign
     public String applyNotify(@RequestBody String request) {
+        // TODO 数据格式校验
+        // TODO 查看当前记录是否已存在，当前状态校验
 
         String requestBody = request;
         AlipayTemplate template = new DefaultAlipayTemplate(Constants.APP_ID,
@@ -72,6 +74,8 @@ public class CreditLoanController {
                             response.setRequestId(domain.getRequestId());
                             response.setApplyNo(domain.getApplyNo());
 
+                            creditBankLoanService.applyNotify(parametersHolder, response);
+
                             return response;
                         }
                     });
@@ -91,15 +95,17 @@ public class CreditLoanController {
     @PostMapping(value = "/approve_upload", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)
     @Sign
     public ParametersHolder approveUpload(@RequestBody MybankCreditLoanApplyNotifyDomain domain) {
+        // TODO 需要组装来源数据，调用第三方接口？
         // TODO 检查记录是否存在，基于之前有网商银行发起的初审请求
 
-        ParametersHolder response = new ParametersHolder();
+        ParametersHolder<MybankCreditLoanApproveUploadResponse> response = new ParametersHolder<MybankCreditLoanApproveUploadResponse>();
+        MybankCreditLoanApproveUploadRequest request = new MybankCreditLoanApproveUploadRequest();
         try {
             String url = Constants.REQUEST_URL;
             AlipayTemplate template = new DefaultAlipayTemplate(Constants.APP_ID,
                     Constants.PRIVATE_KEY,
                     Constants.alipayPublicKey);
-            MybankCreditLoanApproveUploadRequest request = new MybankCreditLoanApproveUploadRequest();
+
             MybankCreditLoanApplyNotifyDomain bizMode = new MybankCreditLoanApplyNotifyDomain();
             bizMode.setRequestId(domain.getRequestId());
 
@@ -107,6 +113,8 @@ public class CreditLoanController {
             bizMode.setCertName(domain.getCertName());
             bizMode.setCertNo(domain.getCertNo());
             bizMode.setCertType(domain.getCertType());
+
+            // 扩展信息，具体字段请参考SDK规范文档
             bizMode.setExtInfo(domain.getExtInfo());
             request.setBizModel(bizMode);
 
@@ -121,10 +129,10 @@ public class CreditLoanController {
                 resultInfo.setResultCode(BizErrorCode.INVLID_SIGN.getCode());
                 resultInfo.setResultMsg(BizErrorCode.INVLID_SIGN.getMessage());
 
-                MybankCreditLoanApproveUploadResponse approveUploadResponse = (MybankCreditLoanApproveUploadResponse) response.getBody();
+                MybankCreditLoanApproveUploadResponse approveUploadResponse = response.getBody();
                 approveUploadResponse.setResultInfo(resultInfo);
                 response.setBody(approveUploadResponse);
-                return response;
+
             } else if (AlipayErrorCode.ILLEGAL_ARGUMENT.getCode().equals(e.getErrCode())) {
 
                 ResultInfo resultInfo = new ResultInfo();
@@ -134,7 +142,6 @@ public class CreditLoanController {
                 MybankCreditLoanApproveUploadResponse approveUploadResponse = (MybankCreditLoanApproveUploadResponse) response.getBody();
                 approveUploadResponse.setResultInfo(resultInfo);
                 response.setBody(approveUploadResponse);
-                return response;
 
             } else if (AlipayErrorCode.DATA_INVALID.getCode().equals(e.getErrCode())) {
                 ResultInfo resultInfo = new ResultInfo();
@@ -144,7 +151,6 @@ public class CreditLoanController {
                 MybankCreditLoanApproveUploadResponse approveUploadResponse = (MybankCreditLoanApproveUploadResponse) response.getBody();
                 approveUploadResponse.setResultInfo(resultInfo);
                 response.setBody(approveUploadResponse);
-                return response;
 
             } else if (AlipayErrorCode.SGW_ERROR.getCode().equals(e.getErrCode())) {
                 ResultInfo resultInfo = new ResultInfo();
@@ -154,19 +160,19 @@ public class CreditLoanController {
                 MybankCreditLoanApproveUploadResponse approveUploadResponse = (MybankCreditLoanApproveUploadResponse) response.getBody();
                 approveUploadResponse.setResultInfo(resultInfo);
                 response.setBody(approveUploadResponse);
-                return response;
+
             } else {
                 ResultInfo resultInfo = new ResultInfo();
                 resultInfo.setResultCode(BizErrorCode.UNKNOW_SYSTEM_ERROR.getCode());
                 resultInfo.setResultMsg(BizErrorCode.UNKNOW_SYSTEM_ERROR.getMessage());
 
-                MybankCreditLoanApproveUploadResponse approveUploadResponse = (MybankCreditLoanApproveUploadResponse) response.getBody();
+                MybankCreditLoanApproveUploadResponse approveUploadResponse = response.getBody();
                 approveUploadResponse.setResultInfo(resultInfo);
                 response.setBody(approveUploadResponse);
-                return response;
             }
         }
 
+        creditBankLoanService.approveUpload(request, response);
         return response;
 
     }
@@ -179,6 +185,8 @@ public class CreditLoanController {
     @Sign
     public String approveackNotify(@RequestBody String request) {
 
+        // TODO 检查记录是否存在
+        // TODO 检查当前状态
         String requestBody = request;
         AlipayTemplate template = new DefaultAlipayTemplate(Constants.APP_ID,
                 Constants.PRIVATE_KEY,
@@ -212,6 +220,7 @@ public class CreditLoanController {
                             response.setRequestId(notifyDomain.getRequestId());
                             response.setResultInfo(resultInfo);
 
+                            creditBankLoanService.finalNotify(parametersHolder, response);
                             return response;
                         }
                     });
@@ -232,11 +241,12 @@ public class CreditLoanController {
     @Sign
     public ParametersHolder approveackConfirm(@RequestBody MybankCreditLoanApproveackConfirmDomain domain) {
 
-        ParametersHolder holder = new ParametersHolder();
+        ParametersHolder<MybankCreditLoanApproveackConfirmResponse> holder = new ParametersHolder<MybankCreditLoanApproveackConfirmResponse>();
+        MybankCreditLoanApproveackConfirmRequest request = new MybankCreditLoanApproveackConfirmRequest();
         try {
             String url = Constants.REQUEST_URL;
             AlipayTemplate template = new DefaultAlipayTemplate(Constants.APP_ID, Constants.PRIVATE_KEY, Constants.alipayPublicKey);
-            MybankCreditLoanApproveackConfirmRequest request = new MybankCreditLoanApproveackConfirmRequest();
+
             MybankCreditLoanApproveackConfirmDomain bizMode = new MybankCreditLoanApproveackConfirmDomain();
             bizMode.setRequestId(domain.getRequestId());
 
@@ -267,9 +277,11 @@ public class CreditLoanController {
             }
             resultInfo.setRetry(BooleanEnum.FALSE.getCode());
 
-            MybankCreditLoanApproveackConfirmResponse approveackConfirmResponse = (MybankCreditLoanApproveackConfirmResponse) holder.getBody();
+            MybankCreditLoanApproveackConfirmResponse approveackConfirmResponse = holder.getBody();
             approveackConfirmResponse.setResultInfo(resultInfo);
             holder.setBody(approveackConfirmResponse);
+
+            creditBankLoanService.finalConfirm(request, holder);
             return holder;
         }
 

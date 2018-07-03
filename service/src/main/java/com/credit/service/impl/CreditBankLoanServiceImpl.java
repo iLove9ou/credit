@@ -1,11 +1,21 @@
 package com.credit.service.impl;
 
+import com.alipay.sdk.ParametersHolder;
+import com.alipay.sdk.domain.MybankCreditLoanApplyNotifyDomain;
+import com.alipay.sdk.domain.MybankCreditLoanApproveackNotifyDomain;
+import com.alipay.sdk.request.MybankCreditLoanApproveUploadRequest;
+import com.alipay.sdk.request.MybankCreditLoanApproveackConfirmRequest;
+import com.alipay.sdk.response.MybankCreditLoanApplyNotifyResponse;
+import com.alipay.sdk.response.MybankCreditLoanApproveUploadResponse;
+import com.alipay.sdk.response.MybankCreditLoanApproveackConfirmResponse;
+import com.alipay.sdk.response.MybankCreditLoanApproveackNotifyResponse;
 import com.credit.service.manager.BankCreditManager;
 import common.credit.dubbo.CreditBankLoanService;
 import common.credit.enums.BizErrorCode;
 import common.credit.format.Document;
 import common.credit.format.DocumentInput;
 import common.credit.format.ResultInfo;
+import common.credit.result.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @com.alibaba.dubbo.config.annotation.Service(version = "1.0.0")
@@ -17,7 +27,7 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     /*
      * 初审通知请求，网商银行-银行机构
      */
-    @Override
+
     public Document applyNotify(DocumentInput documentInput) {
         String requestId = documentInput.getRequest().getHead().getReqMsgId();
         String appId = documentInput.getRequest().getHead().getAppId();
@@ -33,7 +43,7 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     /*
      * 初审数据上传，银行机构-网商银行
      */
-    @Override
+
     public Document approveUpload(DocumentInput documentInput) {
 
         String requestId = documentInput.getRequest().getHead().getReqMsgId();
@@ -49,7 +59,7 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     /*
      * 终审通知，网商银行-银行机构
      */
-    @Override
+
     public Document finalNotify(DocumentInput documentInput) {
 
         String requestId = documentInput.getRequest().getHead().getReqMsgId();
@@ -65,7 +75,7 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     /*
      * 终审确认，银行机构-网商银行
      */
-    @Override
+
     public Document finalConfirm(DocumentInput documentInput) {
 
         String requestId = documentInput.getRequest().getHead().getReqMsgId();
@@ -79,26 +89,26 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     }
 
     @Override
-    public Document finalConfirm(com.alipay.sdk.request.MybankCreditLoanApproveackConfirmRequest request,
-                                 com.alipay.sdk.response.MybankCreditLoanApproveackConfirmResponse response) {
+    public ResponseResult applyNotify(ParametersHolder<MybankCreditLoanApplyNotifyDomain> parametersHolder,
+                                MybankCreditLoanApplyNotifyResponse response) {
         return null;
     }
 
     @Override
-    public Document finalNotify(com.alipay.sdk.request.MybankCreditLoanApproveackNotifyRequest request,
-                                com.alipay.sdk.response.MybankCreditLoanApproveackNotifyResponse response) {
+    public ResponseResult approveUpload(MybankCreditLoanApproveUploadRequest request,
+                                  ParametersHolder<MybankCreditLoanApproveUploadResponse> response) {
         return null;
     }
 
     @Override
-    public Document approveUpload(com.alipay.sdk.request.MybankCreditLoanApproveUploadRequest request,
-                                  com.alipay.sdk.response.MybankCreditLoanApproveUploadResponse response) {
+    public ResponseResult finalNotify(ParametersHolder<MybankCreditLoanApproveackNotifyDomain> parametersHolder,
+                                      MybankCreditLoanApproveackNotifyResponse response) {
         return null;
     }
 
     @Override
-    public Document applyNotify(com.alipay.sdk.request.MybankCreditLoanApplyNotifyRequest request,
-                                com.alipay.sdk.response.MybankCreditLoanApplyNotifyResponse response) {
+    public ResponseResult finalConfirm(MybankCreditLoanApproveackConfirmRequest request,
+                                 ParametersHolder<MybankCreditLoanApproveackConfirmResponse> response) {
         return null;
     }
 
