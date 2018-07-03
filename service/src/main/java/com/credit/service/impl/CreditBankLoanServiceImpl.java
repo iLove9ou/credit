@@ -27,7 +27,6 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     /*
      * 初审通知请求，网商银行-银行机构
      */
-
     public Document applyNotify(DocumentInput documentInput) {
         String requestId = documentInput.getRequest().getHead().getReqMsgId();
         String appId = documentInput.getRequest().getHead().getAppId();
@@ -43,7 +42,6 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     /*
      * 初审数据上传，银行机构-网商银行
      */
-
     public Document approveUpload(DocumentInput documentInput) {
 
         String requestId = documentInput.getRequest().getHead().getReqMsgId();
@@ -59,7 +57,6 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     /*
      * 终审通知，网商银行-银行机构
      */
-
     public Document finalNotify(DocumentInput documentInput) {
 
         String requestId = documentInput.getRequest().getHead().getReqMsgId();
@@ -75,7 +72,6 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     /*
      * 终审确认，银行机构-网商银行
      */
-
     public Document finalConfirm(DocumentInput documentInput) {
 
         String requestId = documentInput.getRequest().getHead().getReqMsgId();
@@ -91,6 +87,9 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     @Override
     public ResponseResult applyNotify(ParametersHolder<MybankCreditLoanApplyNotifyDomain> parametersHolder,
                                 MybankCreditLoanApplyNotifyResponse response) {
+
+
+
         return null;
     }
 

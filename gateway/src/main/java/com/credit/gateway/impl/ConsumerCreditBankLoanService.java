@@ -11,7 +11,7 @@ import com.alipay.sdk.response.MybankCreditLoanApproveUploadResponse;
 import com.alipay.sdk.response.MybankCreditLoanApproveackConfirmResponse;
 import com.alipay.sdk.response.MybankCreditLoanApproveackNotifyResponse;
 import common.credit.dubbo.CreditBankLoanService;
-import common.credit.format.Document;
+import common.credit.result.ResponseResult;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,7 +24,7 @@ public class ConsumerCreditBankLoanService {
      * 初审通知请求，网商银行-银行机构
      * 网商银行发起，银行机构接收
      */
-    public Document applyNotify(ParametersHolder<MybankCreditLoanApplyNotifyDomain> parametersHolder, MybankCreditLoanApplyNotifyResponse response) {
+    public ResponseResult applyNotify(ParametersHolder<MybankCreditLoanApplyNotifyDomain> parametersHolder, MybankCreditLoanApplyNotifyResponse response) {
         return creditBankLoanService.applyNotify(parametersHolder, response);
     }
 
@@ -32,7 +32,7 @@ public class ConsumerCreditBankLoanService {
      * 初审通知请求，网商银行-银行机构
      * 网商银行发起，银行机构接收
      */
-    public Document approveUpload(MybankCreditLoanApproveUploadRequest request, ParametersHolder<MybankCreditLoanApproveUploadResponse> response) {
+    public ResponseResult approveUpload(MybankCreditLoanApproveUploadRequest request, ParametersHolder<MybankCreditLoanApproveUploadResponse> response) {
         return creditBankLoanService.approveUpload(request, response);
     }
 
@@ -40,7 +40,7 @@ public class ConsumerCreditBankLoanService {
      * 初审通知请求，网商银行-银行机构
      * 网商银行发起，银行机构接收
      */
-    public Document finalNotify(ParametersHolder<MybankCreditLoanApproveackNotifyDomain> parametersHolder, MybankCreditLoanApproveackNotifyResponse response) {
+    public ResponseResult finalNotify(ParametersHolder<MybankCreditLoanApproveackNotifyDomain> parametersHolder, MybankCreditLoanApproveackNotifyResponse response) {
         return creditBankLoanService.finalNotify(parametersHolder, response);
     }
 
@@ -48,7 +48,7 @@ public class ConsumerCreditBankLoanService {
      * 初审通知请求，网商银行-银行机构
      * 网商银行发起，银行机构接收
      */
-    public Document finalConfirm(MybankCreditLoanApproveackConfirmRequest request, ParametersHolder<MybankCreditLoanApproveackConfirmResponse> response) {
+    public ResponseResult finalConfirm(MybankCreditLoanApproveackConfirmRequest request, ParametersHolder<MybankCreditLoanApproveackConfirmResponse> response) {
         return creditBankLoanService.finalConfirm(request, response);
     }
 }

@@ -1,6 +1,10 @@
 package com.credit.service.manager;
 
 
+import com.alipay.sdk.AlipayHeader;
+import com.alipay.sdk.ParametersHolder;
+import com.alipay.sdk.domain.MybankCreditLoanApplyNotifyDomain;
+import com.alipay.sdk.response.MybankCreditLoanApplyNotifyResponse;
 import com.credit.service.dao.*;
 import com.credit.service.model.entity.BankCreditApplyNotifyRequest;
 import com.credit.service.model.entity.BankCreditBodyResponse;
@@ -13,6 +17,7 @@ import common.credit.enums.SignTypeEnum;
 import common.credit.format.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -66,12 +71,13 @@ public class BankCreditManager {
 
             if (headerResponse == null) {
                 Document document = new Document();
-                return null;
+                return document;
             }
             BankCreditBodyResponse bodyResponse = bodyResponseMapper.selectByRequestId(requestId);
 
             if (bodyResponse == null) {
-                return null;
+                Document document = new Document();
+                return document;
             }
 
             Head head = new Head();
@@ -111,6 +117,26 @@ public class BankCreditManager {
         applyNotifyRequest.setBusinessmodel("model");
         applyNotifyRequest.setExtinfo("ext info");
         applynotifyRequestMapper.insertSelective(applyNotifyRequest);
+    }
+
+    @Transactional
+    public void insertApplyNotify(ParametersHolder<MybankCreditLoanApplyNotifyDomain> parametersHolder,
+                                  MybankCreditLoanApplyNotifyResponse response) {
+
+        BankCreditHeaderRequest headerRequest = new BankCreditHeaderRequest();
+        MybankCreditLoanApplyNotifyDomain domain = parametersHolder.getBody();
+        AlipayHeader header = parametersHolder.getHeader();
+        BeanUtils.copyProperties(headerRequest, header);
+        headerRequestMapper.insertSelective(headerRequest);
+
+        BankCreditHeaderResponse headerResponse = new BankCreditHeaderResponse();
+        BeanUtils.copyProperties(headerResponse, header);
+        headerResponseMapper.insertSelective(headerResponse);
+
+        BankCreditBodyResponse bodyResponse = new BankCreditBodyResponse();
+        BeanUtils.copyProperties(bodyResponse, response);
+        bodyResponseMapper.insertSelective(bodyResponse);
+
     }
 
     private Head getHead(String appId, String function, String reqMsgId, String reverse) {
