@@ -5,12 +5,12 @@ import com.alipay.sdk.AlipayHeader;
 import com.alipay.sdk.ParametersHolder;
 import com.alipay.sdk.domain.MybankCreditLoanApplyNotifyDomain;
 import com.alipay.sdk.domain.MybankCreditLoanApproveackNotifyDomain;
-import com.alipay.sdk.request.MybankCreditLoanApproveUploadRequest;
 import com.alipay.sdk.request.MybankCreditLoanApproveackConfirmRequest;
 import com.alipay.sdk.response.MybankCreditLoanApplyNotifyResponse;
 import com.alipay.sdk.response.MybankCreditLoanApproveUploadResponse;
 import com.alipay.sdk.response.MybankCreditLoanApproveackConfirmResponse;
 import com.alipay.sdk.response.MybankCreditLoanApproveackNotifyResponse;
+import common.credit.request.CustMybankCreditLoanApproveUploadRequest;
 import common.credit.result.ResponseResult;
 
 public interface CreditBankLoanService {
@@ -27,7 +27,7 @@ public interface CreditBankLoanService {
      */
     public ResponseResult approveUpload(AlipayHeader head,
                                         MybankCreditLoanApproveUploadResponse body,
-                                        MybankCreditLoanApproveUploadRequest request);
+                                        CustMybankCreditLoanApproveUploadRequest request);
 
     /*
      * 终审通知，网商银行-银行机构

@@ -1,8 +1,11 @@
-package com.credit.gateway.request;
+package common.credit.request;
+
+import com.alibaba.fastjson.JSONObject;
 
 import java.io.Serializable;
 
-public class MybankCreditLoanApproveUploadRequest implements Serializable {
+public class CustMybankCreditLoanApproveackConfirmRequest implements Serializable {
+
     /*
      * 请求幂等ID
      */
@@ -14,9 +17,9 @@ public class MybankCreditLoanApproveUploadRequest implements Serializable {
     private String applyNo;
 
     /*
-     * 数据类型
+     * 证件类型
      */
-    private String category;
+    private String certType;
 
     /*
      * 证件名称
@@ -29,9 +32,14 @@ public class MybankCreditLoanApproveUploadRequest implements Serializable {
     private String certNo;
 
     /*
+     * 业务模式
+     */
+    private String businessModel;
+
+    /*
      * 扩展字段
      */
-    private String objectContent;
+    private JSONObject extInfo;
 
     public String getRequestId() {
         return requestId;
@@ -49,12 +57,12 @@ public class MybankCreditLoanApproveUploadRequest implements Serializable {
         this.applyNo = applyNo;
     }
 
-    public String getCategory() {
-        return category;
+    public String getCertType() {
+        return certType;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCertType(String certType) {
+        this.certType = certType;
     }
 
     public String getCertName() {
@@ -73,11 +81,19 @@ public class MybankCreditLoanApproveUploadRequest implements Serializable {
         this.certNo = certNo;
     }
 
-    public String getObjectContent() {
-        return objectContent;
+    public String getBusinessModel() {
+        return businessModel;
     }
 
-    public void setObjectContent(String objectContent) {
-        this.objectContent = objectContent;
+    public void setBusinessModel(String businessModel) {
+        this.businessModel = businessModel;
+    }
+
+    public JSONObject getExtInfo() {
+        return extInfo;
+    }
+
+    public void setExtInfo(JSONObject extInfo) {
+        this.extInfo = extInfo;
     }
 }

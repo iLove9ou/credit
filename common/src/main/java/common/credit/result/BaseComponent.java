@@ -5,7 +5,7 @@ import common.credit.enums.ExceptionEnum;
 import common.credit.enums.ResponseEnum;
 
 
-public class BaseService {
+public class BaseComponent {
 
 	public ResponseResult getResponseResult(String code,String message,Object data) {
 		ResponseResult result = new ResponseResult();

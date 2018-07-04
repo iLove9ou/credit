@@ -1,10 +1,11 @@
-package com.credit.gateway.request;
+package common.credit.request;
 
 import com.alibaba.fastjson.JSONObject;
+import common.credit.format.Head;
 
 import java.io.Serializable;
 
-public class MybankCreditLoanApplyNotifyRequest implements Serializable {
+public class CustMybankCreditLoanApplyNotifyExtRequest extends Head implements Serializable {
 
     /*
      * 请求幂等ID

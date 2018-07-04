@@ -1,8 +1,7 @@
-## 避免和 server 工程端口冲突
-server:
-  port: 8101
 
-# Dubbo 服务消费者配置
+server:
+  port: 8102
+
 spring:
   dubbo:
     application:

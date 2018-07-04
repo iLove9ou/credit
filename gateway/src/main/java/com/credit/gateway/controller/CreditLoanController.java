@@ -16,10 +16,12 @@ import com.credit.gateway.impl.ConsumerCreditBankLoanService;
 import com.credit.gateway.utils.ParserUtil;
 import common.credit.constants.Constants;
 import common.credit.enums.BizErrorCode;
-import common.credit.result.BaseService;
+import common.credit.request.CustMybankCreditLoanApproveUploadRequest;
+import common.credit.result.BaseComponent;
 import common.credit.result.ResponseResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class CreditLoanController extends BaseService {
+public class CreditLoanController extends BaseComponent {
 
     private final static Logger logger = LoggerFactory.getLogger(CreditLoanController.class);
 
@@ -195,11 +197,14 @@ public class CreditLoanController extends BaseService {
             approveUploadResponse.setResultInfo(resultInfo);
             response.setBody(approveUploadResponse);
 
+            return response;
         }
 
         AlipayHeader head = response.getHeader();
         MybankCreditLoanApproveUploadResponse body = response.getBody();
-        ResponseResult result = creditBankLoanService.approveUpload(head, body, request);
+        CustMybankCreditLoanApproveUploadRequest custRequest = new CustMybankCreditLoanApproveUploadRequest();
+        BeanUtils.copyProperties(request, custRequest);
+        ResponseResult result = creditBankLoanService.approveUpload(head, body, custRequest);
         logger.info("approve_upload result=", result);
         return response;
 

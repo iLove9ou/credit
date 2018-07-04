@@ -176,4 +176,61 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+  <insert id="insertSelective" parameterType="com.credit.service.model.entity.BankCreditApproveackConfirmRequest" >
+    insert into bank_credit_header_request
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="requestId != null" >
+        requestId,
+      </if>
+      <if test="applyNo != null" >
+        applyNo,
+      </if>
+      <if test="certName != null" >
+        certName,
+      </if>
+      <if test="certNo != null" >
+        certNo,
+      </if>
+      <if test="isAgree != null" >
+        isAgree,
+      </if>
+      <if test="refuseCode != null" >
+        refuseCode,
+      </if>
+      <if test="ackMsg != null" >
+        ackMsg,
+      </if>
+      <if test="extInfo != null" >
+        extInfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="requestId != null" >
+        #{requestid,jdbcType=VARCHAR},
+      </if>
+      <if test="applyNo != null" >
+        #{applyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="certName != null" >
+        #{certName,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null" >
+        #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgree != null" >
+        #{isAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="refuseCode != null" >
+        #{refuseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ackMsg != null" >
+        #{ackMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="extInfo != null" >
+        #{extInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
 </mapper>

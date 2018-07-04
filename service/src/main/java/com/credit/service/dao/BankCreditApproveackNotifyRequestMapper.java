@@ -10,6 +10,8 @@ import java.util.List;
 @Mapper
 public interface BankCreditApproveackNotifyRequestMapper {
 
+    void insertSelective(BankCreditApproveackNotifyRequest record);
+
     int countByExample(BankCreditApproveackNotifyRequestExample example);
 
     int deleteByExample(BankCreditApproveackNotifyRequestExample example);

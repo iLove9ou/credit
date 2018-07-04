@@ -1,10 +1,10 @@
-package com.credit.gateway.request;
+package common.credit.request;
 
 import common.credit.format.Head;
 
 import java.io.Serializable;
 
-public class MybankCreditLoanApproveUploadExtRequest extends Head implements Serializable {
+public class CustMybankCreditLoanApproveUploadExtRequest extends Head implements Serializable {
     /*
      * 请求幂等ID
      */

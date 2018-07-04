@@ -2,7 +2,6 @@ package com.credit.service.dao;
 
 import com.credit.service.dao.example.BankCreditApproveackConfirmRequestExample;
 import com.credit.service.model.entity.BankCreditApproveackConfirmRequest;
-import com.credit.service.model.entity.BankCreditBodyResponse;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface BankCreditApproveackConfirmRequestMapper {
 
-    void insertSelective(BankCreditBodyResponse record);
+    void insertSelective(BankCreditApproveackConfirmRequest record);
 
     int countByExample(BankCreditApproveackConfirmRequestExample example);
 

@@ -4,193 +4,121 @@ public class BankCreditApproveackNotifyRequest {
 
     private Long id;
 
-    private String requestid;
+    private String requestId;
 
-    private String applyno;
+    private String applyNo;
 
-    private String certno;
+    private String certNo;
 
-    private String certname;
+    private String certName;
 
-    private String certtype;
+    private String certType;
 
-    private String platformaccess;
+    private String platformAccess;
 
-    private String platformadmit;
+    private String platformAdmit;
 
-    private String platformratelimit;
+    private String platformRateLimit;
 
-    private String platformratebottom;
+    private String platformRateBottom;
 
-    private String businessmodel;
+    private String businessModel;
 
-    private String extinfo;
+    private String extInfo;
 
-    /**
-     * @return id
-     */
     public Long getId() {
         return id;
     }
 
-    /**
-     * @param id
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * @return requestId
-     */
-    public String getRequestid() {
-        return requestid;
+    public String getRequestId() {
+        return requestId;
     }
 
-    /**
-     * @param requestid
-     */
-    public void setRequestid(String requestid) {
-        this.requestid = requestid;
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
-    /**
-     * @return applyNo
-     */
-    public String getApplyno() {
-        return applyno;
+    public String getApplyNo() {
+        return applyNo;
     }
 
-    /**
-     * @param applyno
-     */
-    public void setApplyno(String applyno) {
-        this.applyno = applyno;
+    public void setApplyNo(String applyNo) {
+        this.applyNo = applyNo;
     }
 
-    /**
-     * @return certNo
-     */
-    public String getCertno() {
-        return certno;
+    public String getCertNo() {
+        return certNo;
     }
 
-    /**
-     * @param certno
-     */
-    public void setCertno(String certno) {
-        this.certno = certno;
+    public void setCertNo(String certNo) {
+        this.certNo = certNo;
     }
 
-    /**
-     * @return certName
-     */
-    public String getCertname() {
-        return certname;
+    public String getCertName() {
+        return certName;
     }
 
-    /**
-     * @param certname
-     */
-    public void setCertname(String certname) {
-        this.certname = certname;
+    public void setCertName(String certName) {
+        this.certName = certName;
     }
 
-    /**
-     * @return certType
-     */
-    public String getCerttype() {
-        return certtype;
+    public String getCertType() {
+        return certType;
     }
 
-    /**
-     * @param certtype
-     */
-    public void setCerttype(String certtype) {
-        this.certtype = certtype;
+    public void setCertType(String certType) {
+        this.certType = certType;
     }
 
-    /**
-     * @return platformAccess
-     */
-    public String getPlatformaccess() {
-        return platformaccess;
+    public String getPlatformAccess() {
+        return platformAccess;
     }
 
-    /**
-     * @param platformaccess
-     */
-    public void setPlatformaccess(String platformaccess) {
-        this.platformaccess = platformaccess;
+    public void setPlatformAccess(String platformAccess) {
+        this.platformAccess = platformAccess;
     }
 
-    /**
-     * @return platformAdmit
-     */
-    public String getPlatformadmit() {
-        return platformadmit;
+    public String getPlatformAdmit() {
+        return platformAdmit;
     }
 
-    /**
-     * @param platformadmit
-     */
-    public void setPlatformadmit(String platformadmit) {
-        this.platformadmit = platformadmit;
+    public void setPlatformAdmit(String platformAdmit) {
+        this.platformAdmit = platformAdmit;
     }
 
-    /**
-     * @return platformRateLimit
-     */
-    public String getPlatformratelimit() {
-        return platformratelimit;
+    public String getPlatformRateLimit() {
+        return platformRateLimit;
     }
 
-    /**
-     * @param platformratelimit
-     */
-    public void setPlatformratelimit(String platformratelimit) {
-        this.platformratelimit = platformratelimit;
+    public void setPlatformRateLimit(String platformRateLimit) {
+        this.platformRateLimit = platformRateLimit;
     }
 
-    /**
-     * @return platformRateBottom
-     */
-    public String getPlatformratebottom() {
-        return platformratebottom;
+    public String getPlatformRateBottom() {
+        return platformRateBottom;
     }
 
-    /**
-     * @param platformratebottom
-     */
-    public void setPlatformratebottom(String platformratebottom) {
-        this.platformratebottom = platformratebottom;
+    public void setPlatformRateBottom(String platformRateBottom) {
+        this.platformRateBottom = platformRateBottom;
     }
 
-    /**
-     * @return businessModel
-     */
-    public String getBusinessmodel() {
-        return businessmodel;
+    public String getBusinessModel() {
+        return businessModel;
     }
 
-    /**
-     * @param businessmodel
-     */
-    public void setBusinessmodel(String businessmodel) {
-        this.businessmodel = businessmodel;
+    public void setBusinessModel(String businessModel) {
+        this.businessModel = businessModel;
     }
 
-    /**
-     * @return extInfo
-     */
-    public String getExtinfo() {
-        return extinfo;
+    public String getExtInfo() {
+        return extInfo;
     }
 
-    /**
-     * @param extinfo
-     */
-    public void setExtinfo(String extinfo) {
-        this.extinfo = extinfo;
+    public void setExtInfo(String extInfo) {
+        this.extInfo = extInfo;
     }
 }
