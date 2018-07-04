@@ -166,4 +166,55 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+  <insert id="insertSelective" parameterType="com.credit.service.model.entity.BankCreditApproveUploadRequest" >
+    insert into bank_credit_header_request
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="requestId != null" >
+        requestId,
+      </if>
+      <if test="applyNo != null" >
+        applyNo,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="certName != null" >
+        certName,
+      </if>
+      <if test="certNo != null" >
+        certNo,
+      </if>
+      <if test="objectContent != null" >
+        objectContent
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="requestId != null" >
+        #{requestId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyNo != null" >
+        #{applyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="certName != null" >
+        #{certName,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null" >
+        #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="objectContent != null" >
+        #{objectContent,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+
 </mapper>

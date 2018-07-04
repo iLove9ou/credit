@@ -4,11 +4,9 @@ package com.credit.service.manager;
 import com.alipay.sdk.AlipayHeader;
 import com.alipay.sdk.domain.MybankCreditLoanApplyNotifyDomain;
 import com.alipay.sdk.response.MybankCreditLoanApplyNotifyResponse;
+import com.alipay.sdk.response.MybankCreditLoanApproveUploadResponse;
 import com.credit.service.dao.*;
-import com.credit.service.model.entity.BankCreditApplyNotifyRequest;
-import com.credit.service.model.entity.BankCreditBodyResponse;
-import com.credit.service.model.entity.BankCreditHeaderRequest;
-import com.credit.service.model.entity.BankCreditHeaderResponse;
+import com.credit.service.model.entity.*;
 import com.credit.service.utils.DateUtil;
 import common.credit.constants.Constants;
 import common.credit.enums.CharsetEnum;
@@ -29,13 +27,22 @@ public class BankCreditManager {
 
 
     @Resource
-    private BankCreditHeaderRequestMapper headerRequestMapper;
-
-    @Resource
     private BankCreditApplyNotifyRequestMapper applynotifyRequestMapper;
 
     @Resource
+    private BankCreditApproveUploadRequestMapper approveUploadRequestMapper;
+
+    @Resource
+    private BankCreditApproveackNotifyRequestMapper approveackNotifyRequestMapper;
+
+    @Resource
+    private BankCreditApproveackConfirmRequestMapper approveackConfirmRequestMapper;
+
+    @Resource
     private BankCreditCodeMapper creditCodeMapper;
+
+    @Resource
+    private BankCreditHeaderRequestMapper headerRequestMapper;
 
     @Resource
     private BankCreditHeaderResponseMapper headerResponseMapper;
@@ -101,6 +108,19 @@ public class BankCreditManager {
         }
     }
 
+    private Head getHead(String appId, String function, String reqMsgId, String reverse) {
+        Head head = new Head();
+        head.setVersion(Constants.SYSTEM_VERSION);
+        head.setSignType(SignTypeEnum.RSA.name());
+        head.setRespTime(DateUtil.currDate());
+        head.setInputCharset(CharsetEnum.UTF8.name());
+        head.setAppId(appId);
+        head.setFunction(function);
+        head.setReqMsgId(reqMsgId);
+        head.setReverse(reverse);
+        return head;
+    }
+
     public void addDocument(DocumentInput documentInput) {
 
         BankCreditHeaderRequest headerRequest = new BankCreditHeaderRequest();
@@ -149,17 +169,26 @@ public class BankCreditManager {
 
     }
 
-    private Head getHead(String appId, String function, String reqMsgId, String reverse) {
-        Head head = new Head();
-        head.setVersion(Constants.SYSTEM_VERSION);
-        head.setSignType(SignTypeEnum.RSA.name());
-        head.setRespTime(DateUtil.currDate());
-        head.setInputCharset(CharsetEnum.UTF8.name());
-        head.setAppId(appId);
-        head.setFunction(function);
-        head.setReqMsgId(reqMsgId);
-        head.setReverse(reverse);
-        return head;
+    @Transactional
+    public void insertApproveUpload(AlipayHeader header,
+                                    MybankCreditLoanApproveUploadResponse body,
+                                    BankCreditApproveUploadRequest request) {
+
+        BankCreditHeaderResponse headerResponse = new BankCreditHeaderResponse();
+        BeanUtils.copyProperties(header, headerResponse);
+        headerResponseMapper.insertSelective(headerResponse);
+
+        BankCreditBodyResponse bodyResponse = new BankCreditBodyResponse();
+        bodyResponse.setApplyNo(body.getApplyNo());
+        bodyResponse.setRequestId(body.getRequestId());
+        bodyResponse.setResultCode(body.getResultInfo().getResultCode());
+        bodyResponse.setResultMsg(body.getResultInfo().getResultMsg());
+        bodyResponse.setRetry(body.getResultInfo().getRetry());
+        bodyResponseMapper.insertSelective(bodyResponse);
+
+//        BankCreditApproveUploadRequest custRequest = new BankCreditApproveUploadRequest();
+//        BeanUtils.copyProperties(request, custRequest);
+        approveUploadRequestMapper.insertSelective(request);
     }
 
 }

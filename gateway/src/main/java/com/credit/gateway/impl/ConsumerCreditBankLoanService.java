@@ -33,8 +33,8 @@ public class ConsumerCreditBankLoanService {
      * 初审通知请求，网商银行-银行机构
      * 网商银行发起，银行机构接收
      */
-    public ResponseResult approveUpload(MybankCreditLoanApproveUploadRequest request, ParametersHolder<MybankCreditLoanApproveUploadResponse> response) {
-        return creditBankLoanService.approveUpload(request, response);
+    public ResponseResult approveUpload(AlipayHeader head, MybankCreditLoanApproveUploadResponse body, MybankCreditLoanApproveUploadRequest request) {
+        return creditBankLoanService.approveUpload(head, body, request);
     }
 
     /*

@@ -4,113 +4,71 @@ public class BankCreditApproveUploadRequest {
 
     private Long id;
 
-    private String requestid;
+    private String requestId;
 
-    private String applyno;
+    private String applyNo;
 
     private String category;
 
-    private String certname;
+    private String certName;
 
-    private String certno;
+    private String certNo;
 
-    private String objectcontent;
+    private String objectContent;
 
-    /**
-     * @return id
-     */
     public Long getId() {
         return id;
     }
 
-    /**
-     * @param id
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * @return requestId
-     */
-    public String getRequestid() {
-        return requestid;
+    public String getRequestId() {
+        return requestId;
     }
 
-    /**
-     * @param requestid
-     */
-    public void setRequestid(String requestid) {
-        this.requestid = requestid;
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
-    /**
-     * @return applyNo
-     */
-    public String getApplyno() {
-        return applyno;
+    public String getApplyNo() {
+        return applyNo;
     }
 
-    /**
-     * @param applyno
-     */
-    public void setApplyno(String applyno) {
-        this.applyno = applyno;
+    public void setApplyNo(String applyNo) {
+        this.applyNo = applyNo;
     }
 
-    /**
-     * @return category
-     */
     public String getCategory() {
         return category;
     }
 
-    /**
-     * @param category
-     */
     public void setCategory(String category) {
         this.category = category;
     }
 
-    /**
-     * @return certName
-     */
-    public String getCertname() {
-        return certname;
+    public String getCertName() {
+        return certName;
     }
 
-    /**
-     * @param certname
-     */
-    public void setCertname(String certname) {
-        this.certname = certname;
+    public void setCertName(String certName) {
+        this.certName = certName;
     }
 
-    /**
-     * @return certNo
-     */
-    public String getCertno() {
-        return certno;
+    public String getCertNo() {
+        return certNo;
     }
 
-    /**
-     * @param certno
-     */
-    public void setCertno(String certno) {
-        this.certno = certno;
+    public void setCertNo(String certNo) {
+        this.certNo = certNo;
     }
 
-    /**
-     * @return objectContent
-     */
-    public String getObjectcontent() {
-        return objectcontent;
+    public String getObjectContent() {
+        return objectContent;
     }
 
-    /**
-     * @param objectcontent
-     */
-    public void setObjectcontent(String objectcontent) {
-        this.objectcontent = objectcontent;
+    public void setObjectContent(String objectContent) {
+        this.objectContent = objectContent;
     }
 }

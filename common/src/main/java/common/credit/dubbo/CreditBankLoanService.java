@@ -25,8 +25,9 @@ public interface CreditBankLoanService {
     /*
      * 初审数据上传，银行机构-网商银行
      */
-    public ResponseResult approveUpload(MybankCreditLoanApproveUploadRequest request,
-                                  ParametersHolder<MybankCreditLoanApproveUploadResponse> response);
+    public ResponseResult approveUpload(AlipayHeader head,
+                                        MybankCreditLoanApproveUploadResponse body,
+                                        MybankCreditLoanApproveUploadRequest request);
 
     /*
      * 终审通知，网商银行-银行机构

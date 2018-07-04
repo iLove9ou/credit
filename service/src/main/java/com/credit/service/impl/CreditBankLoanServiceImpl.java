@@ -98,8 +98,11 @@ public class CreditBankLoanServiceImpl extends BaseService implements CreditBank
     }
 
     @Override
-    public ResponseResult approveUpload(MybankCreditLoanApproveUploadRequest request,
-                                  ParametersHolder<MybankCreditLoanApproveUploadResponse> response) {
+    public ResponseResult approveUpload(AlipayHeader head,
+                                        MybankCreditLoanApproveUploadResponse body,
+                                        MybankCreditLoanApproveUploadRequest request) {
+
+        manager.insertApproveUpload(head, body, request);
 
         return success();
 

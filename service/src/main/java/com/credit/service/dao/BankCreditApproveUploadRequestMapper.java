@@ -10,6 +10,8 @@ import java.util.List;
 @Mapper
 public interface BankCreditApproveUploadRequestMapper {
 
+    void insertSelective(BankCreditApproveUploadRequest request);
+
     int countByExample(BankCreditApproveUploadRequestExample example);
 
     int deleteByExample(BankCreditApproveUploadRequestExample example);
