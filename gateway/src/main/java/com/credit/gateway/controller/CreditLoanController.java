@@ -43,9 +43,9 @@ public class CreditLoanController extends BaseComponent {
      * 初审通知请求，网商银行-银行机构
      * 网商银行发起，银行机构接收
      */
-    @PostMapping(value = "/apply_notify", consumes = "application/xml")
+    @PostMapping(value = "/apply_notify", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)
     @Sign
-    public ResponseResult applyNotify(@RequestBody String request) {
+    public String applyNotify(@RequestBody String request) {
 
         logger.info("apply_notify request: ", request);
 
@@ -57,8 +57,10 @@ public class CreditLoanController extends BaseComponent {
                 Constants.PRIVATE_KEY,
                 Constants.alipayPublicKey);
         String respXml = "";
+        ParametersHolder reqHolder = new ParametersHolder();
         try {
-             respXml = template.execute(requestBody, MybankCreditLoanApplyNotifyRequest.class, new
+            reqHolder = ParserUtil.parse(requestBody, MybankCreditLoanApplyNotifyRequest.class);
+            respXml = template.execute(requestBody, MybankCreditLoanApplyNotifyRequest.class, new
                     AlipayCallback<MybankCreditLoanApplyNotifyDomain, MybankCreditLoanApplyNotifyResponse>() {
 
                         @Override
@@ -93,18 +95,36 @@ public class CreditLoanController extends BaseComponent {
                     });
 
             logger.info("apply_notify excute ok: ", respXml);
+
         } catch (AlipayApiException e) {
             logger.error("apply_notify excute error: ", e);
-
-            return error(e.getErrCode(), e.getMessage());
+            ParametersHolder respHolder = new ParametersHolder();
+            respHolder.setHeader(reqHolder.getHeader());
+            MybankCreditLoanApplyNotifyResponse respBody = new MybankCreditLoanApplyNotifyResponse();
+            ResultInfo resultInfo = new ResultInfo();
+            resultInfo.setResultCode(BizErrorCode.CALL_GATEWAY_HANDLE_ERROR.getCode());
+            resultInfo.setResultMsg(BizErrorCode.CALL_GATEWAY_HANDLE_ERROR.getMessage());
+            respBody.setResultInfo(resultInfo);
+            respHolder.setBody(respBody);
+            return ParserUtil.toxml(respHolder);
 
         } catch (Exception e) {
 
             logger.error("apply_notify excute error: ", e);
-            return error(BizErrorCode.UNKNOW_SYSTEM_ERROR.getCode(), BizErrorCode.UNKNOW_SYSTEM_ERROR.getMessage());
+
+            ParametersHolder respHolder = new ParametersHolder();
+            respHolder.setHeader(reqHolder.getHeader());
+            MybankCreditLoanApplyNotifyResponse respBody = new MybankCreditLoanApplyNotifyResponse();
+            ResultInfo resultInfo = new ResultInfo();
+            resultInfo.setResultCode(BizErrorCode.UNKNOW_SYSTEM_ERROR.getCode());
+            resultInfo.setResultMsg(BizErrorCode.UNKNOW_SYSTEM_ERROR.getMessage());
+            respBody.setResultInfo(resultInfo);
+            respHolder.setBody(respBody);
+            return ParserUtil.toxml(respHolder);
         }
 
-        return success();
+        return ParserUtil.toxml(reqHolder);
+
     }
 
     /*
@@ -113,16 +133,16 @@ public class CreditLoanController extends BaseComponent {
      */
     @PostMapping(value = "/approve_upload", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)
     @Sign
-    public ParametersHolder approveUpload(@RequestBody String requestXml) {
+    public String approveUpload(@RequestBody String requestXml) {
         // TODO 需要组装来源数据，调用第三方接口？
         // TODO 检查记录是否存在，基于之前有网商银行发起的初审请求
 
-        ParametersHolder<MybankCreditLoanApproveUploadResponse> response = new ParametersHolder<MybankCreditLoanApproveUploadResponse>();
+        ParametersHolder reqHolder = new ParametersHolder();
+        ParametersHolder<MybankCreditLoanApproveUploadResponse> respHolder = new ParametersHolder<MybankCreditLoanApproveUploadResponse>();
         MybankCreditLoanApproveUploadRequest request = new MybankCreditLoanApproveUploadRequest();
         try {
-
-            ParametersHolder holder = ParserUtil.parse(requestXml, MybankCreditLoanApproveUploadRequest.class);
-            MybankCreditLoanApproveUploadDomain bizMode = (MybankCreditLoanApproveUploadDomain) holder.getBody();
+            reqHolder = ParserUtil.parse(requestXml, MybankCreditLoanApproveUploadRequest.class);
+            MybankCreditLoanApproveUploadDomain bizMode = (MybankCreditLoanApproveUploadDomain) reqHolder.getBody();
 
             String url = Constants.REQUEST_URL;
             AlipayTemplate template = new DefaultAlipayTemplate(Constants.APP_ID,
@@ -131,9 +151,9 @@ public class CreditLoanController extends BaseComponent {
 
             request.setBizModel(bizMode);
 
-            response = template.execute(url, request);
+            respHolder = template.execute(url, request);
 
-            logger.info("approve_upload excute ok: ", response);
+            logger.info("approve_upload excute ok: ", respHolder);
         } catch (AlipayApiException e) {
             logger.error("approve_upload excute error: ", e);
 
@@ -142,9 +162,9 @@ public class CreditLoanController extends BaseComponent {
                 resultInfo.setResultCode(BizErrorCode.INVLID_SIGN.getCode());
                 resultInfo.setResultMsg(BizErrorCode.INVLID_SIGN.getMessage());
 
-                MybankCreditLoanApproveUploadResponse approveUploadResponse = response.getBody();
+                MybankCreditLoanApproveUploadResponse approveUploadResponse = respHolder.getBody();
                 approveUploadResponse.setResultInfo(resultInfo);
-                response.setBody(approveUploadResponse);
+                respHolder.setBody(approveUploadResponse);
 
             } else if (AlipayErrorCode.ILLEGAL_ARGUMENT.getCode().equals(e.getErrCode())) {
 
@@ -152,62 +172,59 @@ public class CreditLoanController extends BaseComponent {
                 resultInfo.setResultCode(BizErrorCode.PARAMS_ERROR.getCode());
                 resultInfo.setResultMsg(BizErrorCode.PARAMS_ERROR.getMessage());
 
-                MybankCreditLoanApproveUploadResponse approveUploadResponse = response.getBody();
+                MybankCreditLoanApproveUploadResponse approveUploadResponse = respHolder.getBody();
                 approveUploadResponse.setResultInfo(resultInfo);
-                response.setBody(approveUploadResponse);
+                respHolder.setBody(approveUploadResponse);
 
             } else if (AlipayErrorCode.DATA_INVALID.getCode().equals(e.getErrCode())) {
                 ResultInfo resultInfo = new ResultInfo();
                 resultInfo.setResultCode(BizErrorCode.ITEM_FORMAT_ERROR.getCode());
                 resultInfo.setResultMsg(BizErrorCode.ITEM_FORMAT_ERROR.getMessage());
 
-                MybankCreditLoanApproveUploadResponse approveUploadResponse = response.getBody();
+                MybankCreditLoanApproveUploadResponse approveUploadResponse = respHolder.getBody();
                 approveUploadResponse.setResultInfo(resultInfo);
-                response.setBody(approveUploadResponse);
+                respHolder.setBody(approveUploadResponse);
 
             } else if (AlipayErrorCode.SGW_ERROR.getCode().equals(e.getErrCode())) {
                 ResultInfo resultInfo = new ResultInfo();
                 resultInfo.setResultCode(BizErrorCode.CALL_GATEWAY_HANDLE_ERROR.getCode());
                 resultInfo.setResultMsg(BizErrorCode.CALL_GATEWAY_HANDLE_ERROR.getMessage());
 
-                MybankCreditLoanApproveUploadResponse approveUploadResponse = response.getBody();
+                MybankCreditLoanApproveUploadResponse approveUploadResponse = respHolder.getBody();
                 approveUploadResponse.setResultInfo(resultInfo);
-                response.setBody(approveUploadResponse);
+                respHolder.setBody(approveUploadResponse);
 
             } else {
                 ResultInfo resultInfo = new ResultInfo();
                 resultInfo.setResultCode(BizErrorCode.UNKNOW_SYSTEM_ERROR.getCode());
                 resultInfo.setResultMsg(BizErrorCode.UNKNOW_SYSTEM_ERROR.getMessage());
 
-                MybankCreditLoanApproveUploadResponse approveUploadResponse = response.getBody();
+                MybankCreditLoanApproveUploadResponse approveUploadResponse = respHolder.getBody();
                 approveUploadResponse.setResultInfo(resultInfo);
-                response.setBody(approveUploadResponse);
+                respHolder.setBody(approveUploadResponse);
             }
         } catch (Exception e) {
             logger.error("approve_upload excute error: ", e);
-
             ResultInfo resultInfo = new ResultInfo();
             resultInfo.setResultCode(BizErrorCode.UNKNOW_SYSTEM_ERROR.getCode());
             resultInfo.setResultMsg(BizErrorCode.UNKNOW_SYSTEM_ERROR.getMessage());
 
             MybankCreditLoanApproveUploadResponse approveUploadResponse = new MybankCreditLoanApproveUploadResponse();
-            if (response.getBody() != null) {
-                approveUploadResponse = response.getBody();
-            }
 
             approveUploadResponse.setResultInfo(resultInfo);
-            response.setBody(approveUploadResponse);
+            respHolder.setBody(approveUploadResponse);
+            respHolder.setHeader(reqHolder.getHeader());
 
-            return response;
+            return ParserUtil.toxml(respHolder);
         }
 
-        AlipayHeader head = response.getHeader();
-        MybankCreditLoanApproveUploadResponse body = response.getBody();
+        AlipayHeader head = respHolder.getHeader();
+        MybankCreditLoanApproveUploadResponse body = respHolder.getBody();
         CustMybankCreditLoanApproveUploadRequest custRequest = new CustMybankCreditLoanApproveUploadRequest();
         BeanUtils.copyProperties(request, custRequest);
         ResponseResult result = creditBankLoanService.approveUpload(head, body, custRequest);
         logger.info("approve_upload result=", result);
-        return response;
+        return ParserUtil.toxml(reqHolder);
 
     }
 
@@ -221,12 +238,15 @@ public class CreditLoanController extends BaseComponent {
 
         // TODO 检查记录是否存在
         // TODO 检查当前状态
+
         String requestBody = request;
         AlipayTemplate template = new DefaultAlipayTemplate(Constants.APP_ID,
                 Constants.PRIVATE_KEY,
                 Constants.alipayPublicKey);
         String respXml = "";
+        ParametersHolder reqHolder = new ParametersHolder();
         try {
+            reqHolder = ParserUtil.parse(requestBody, MybankCreditLoanApproveackNotifyRequest.class);
             respXml = template.execute(requestBody, MybankCreditLoanApproveackNotifyRequest.class, new
                     AlipayCallback<MybankCreditLoanApproveackNotifyDomain, MybankCreditLoanApproveackNotifyResponse>() {
 
@@ -266,18 +286,35 @@ public class CreditLoanController extends BaseComponent {
         } catch (AlipayApiException e) {
 
             logger.error("approveack_notify excute error: ", e);
-        } catch (Exception e) {
+            ParametersHolder respHolder = new ParametersHolder<MybankCreditLoanApproveUploadResponse>();
 
             logger.error("approveack_notify excute error: ", e);
 
             ResultInfo resultInfo = new ResultInfo();
             resultInfo.setResultCode(BizErrorCode.UNKNOW_SYSTEM_ERROR.getCode());
             resultInfo.setResultMsg(BizErrorCode.UNKNOW_SYSTEM_ERROR.getMessage());
+            MybankCreditLoanApproveUploadResponse body = new MybankCreditLoanApproveUploadResponse();
+            body.setResultInfo(resultInfo);
+            respHolder.setBody(body);
+            respHolder.setHeader(reqHolder.getHeader());
 
-//            MybankCreditLoanApproveUploadResponse approveUploadResponse = response.getBody();
-//            approveUploadResponse.setResultInfo(resultInfo);
-//            response.setBody(approveUploadResponse);
+            return ParserUtil.toxml(respHolder);
 
+        } catch (Exception e) {
+
+            logger.error("approveack_notify excute error: ", e);
+
+            ParametersHolder respHolder = new ParametersHolder<MybankCreditLoanApproveUploadResponse>();
+
+            ResultInfo resultInfo = new ResultInfo();
+            resultInfo.setResultCode(BizErrorCode.UNKNOW_SYSTEM_ERROR.getCode());
+            resultInfo.setResultMsg(BizErrorCode.UNKNOW_SYSTEM_ERROR.getMessage());
+            MybankCreditLoanApproveUploadResponse body = new MybankCreditLoanApproveUploadResponse();
+            body.setResultInfo(resultInfo);
+            respHolder.setBody(body);
+            respHolder.setHeader(reqHolder.getHeader());
+
+            return ParserUtil.toxml(respHolder);
         }
 
         return respXml;
@@ -289,24 +326,26 @@ public class CreditLoanController extends BaseComponent {
      */
     @PostMapping(value = "/approveack_confirm", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)
     @Sign
-    public ParametersHolder approveackConfirm(@RequestBody MybankCreditLoanApproveackConfirmDomain domain) {
+    public String approveackConfirm(@RequestBody String request) {
 
         ParametersHolder<MybankCreditLoanApproveackConfirmResponse> holder = new ParametersHolder<MybankCreditLoanApproveackConfirmResponse>();
-        MybankCreditLoanApproveackConfirmRequest request = new MybankCreditLoanApproveackConfirmRequest();
+        MybankCreditLoanApproveackConfirmRequest body = new MybankCreditLoanApproveackConfirmRequest();
+        ParametersHolder reqHolder = new ParametersHolder();
         try {
+            reqHolder = ParserUtil.parse(request, MybankCreditLoanApproveackConfirmRequest.class);
             String url = Constants.REQUEST_URL;
             AlipayTemplate template = new DefaultAlipayTemplate(Constants.APP_ID, Constants.PRIVATE_KEY, Constants.alipayPublicKey);
 
             MybankCreditLoanApproveackConfirmDomain bizMode = new MybankCreditLoanApproveackConfirmDomain();
-            bizMode.setRequestId(domain.getRequestId());
+//            bizMode.setRequestId(reqHolder.getBody().getRequestId());
+//
+//            bizMode.setApplyNo(reqHolder.getBody().getApplyNo());
+//            bizMode.setCertName(reqHolder.getBody().getCertName());
+//            bizMode.setCertNo(reqHolder.getBody().getCertNo());
+//            bizMode.setExtInfo(reqHolder.getBody().getExtInfo());
+            body.setBizModel(bizMode);
 
-            bizMode.setApplyNo(domain.getApplyNo());
-            bizMode.setCertName(domain.getCertName());
-            bizMode.setCertNo(domain.getCertNo());
-            bizMode.setExtInfo(domain.getExtInfo());
-            request.setBizModel(bizMode);
-
-            holder = template.execute(url, request);
+            holder = template.execute(url, body);
 
         } catch (AlipayApiException e) {
             logger.error("approve_upload excute error: ", e);
@@ -336,9 +375,20 @@ public class CreditLoanController extends BaseComponent {
             CustMybankCreditLoanApproveackConfirmRequest confirmRequest = new CustMybankCreditLoanApproveackConfirmRequest();
             BeanUtils.copyProperties(request, confirmRequest);
             creditBankLoanService.finalConfirm(header, approveackConfirmResponse, confirmRequest);
-            return holder;
+        } catch (Exception e) {
+
+            ParametersHolder respHolder = new ParametersHolder<MybankCreditLoanApproveUploadResponse>();
+
+            ResultInfo resultInfo = new ResultInfo();
+            resultInfo.setResultCode(BizErrorCode.UNKNOW_SYSTEM_ERROR.getCode());
+            resultInfo.setResultMsg(BizErrorCode.UNKNOW_SYSTEM_ERROR.getMessage());
+            MybankCreditLoanApproveUploadResponse respBody = new MybankCreditLoanApproveUploadResponse();
+            respBody.setResultInfo(resultInfo);
+            respHolder.setBody(respBody);
+            respHolder.setHeader(reqHolder.getHeader());
+            return ParserUtil.toxml(respHolder);
         }
 
-        return holder;
+        return ParserUtil.toxml(holder);
     }
 }
