@@ -17,6 +17,7 @@ import com.credit.gateway.utils.ParserUtil;
 import common.credit.constants.Constants;
 import common.credit.enums.BizErrorCode;
 import common.credit.request.CustMybankCreditLoanApproveUploadRequest;
+import common.credit.request.CustMybankCreditLoanApproveackConfirmRequest;
 import common.credit.result.BaseComponent;
 import common.credit.result.ResponseResult;
 import org.slf4j.Logger;
@@ -253,15 +254,20 @@ public class CreditLoanController extends BaseComponent {
                             response.setRequestId(notifyDomain.getRequestId());
                             response.setResultInfo(resultInfo);
 
-                            creditBankLoanService.finalNotify(parametersHolder, response);
+                            AlipayHeader header = parametersHolder.getHeader();
+
+                            creditBankLoanService.finalNotify(header, notifyDomain, response);
                             return response;
                         }
                     });
 
             logger.info("approveack_notify excute ok: ", respXml);
+
         } catch (AlipayApiException e) {
+
             logger.error("approveack_notify excute error: ", e);
         } catch (Exception e) {
+
             logger.error("approveack_notify excute error: ", e);
 
             ResultInfo resultInfo = new ResultInfo();
@@ -325,7 +331,11 @@ public class CreditLoanController extends BaseComponent {
             approveackConfirmResponse.setResultInfo(resultInfo);
             holder.setBody(approveackConfirmResponse);
 
-            creditBankLoanService.finalConfirm(request, holder);
+            AlipayHeader header = holder.getHeader();
+
+            CustMybankCreditLoanApproveackConfirmRequest confirmRequest = new CustMybankCreditLoanApproveackConfirmRequest();
+            BeanUtils.copyProperties(request, confirmRequest);
+            creditBankLoanService.finalConfirm(header, approveackConfirmResponse, confirmRequest);
             return holder;
         }
 

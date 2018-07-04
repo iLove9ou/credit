@@ -1,10 +1,8 @@
 package com.credit.service.impl;
 
 import com.alipay.sdk.AlipayHeader;
-import com.alipay.sdk.ParametersHolder;
 import com.alipay.sdk.domain.MybankCreditLoanApplyNotifyDomain;
 import com.alipay.sdk.domain.MybankCreditLoanApproveackNotifyDomain;
-import com.alipay.sdk.request.MybankCreditLoanApproveackConfirmRequest;
 import com.alipay.sdk.response.MybankCreditLoanApplyNotifyResponse;
 import com.alipay.sdk.response.MybankCreditLoanApproveUploadResponse;
 import com.alipay.sdk.response.MybankCreditLoanApproveackConfirmResponse;
@@ -12,6 +10,7 @@ import com.alipay.sdk.response.MybankCreditLoanApproveackNotifyResponse;
 import com.credit.service.manager.BankCreditManager;
 import common.credit.dubbo.CreditBankLoanService;
 import common.credit.request.CustMybankCreditLoanApproveUploadRequest;
+import common.credit.request.CustMybankCreditLoanApproveackConfirmRequest;
 import common.credit.result.BaseComponent;
 import common.credit.result.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,19 +41,24 @@ public class CreditBankLoanServiceImpl extends BaseComponent implements CreditBa
         manager.insertApproveUpload(head, body, request);
 
         return success();
-
     }
 
     @Override
-    public ResponseResult finalNotify(ParametersHolder<MybankCreditLoanApproveackNotifyDomain> parametersHolder,
+    public ResponseResult finalNotify(AlipayHeader head,
+                                      MybankCreditLoanApproveackNotifyDomain body,
                                       MybankCreditLoanApproveackNotifyResponse response) {
+
+        manager.insertApproveackNotify(head, body, response);
 
         return success();
     }
 
     @Override
-    public ResponseResult finalConfirm(MybankCreditLoanApproveackConfirmRequest request,
-                                 ParametersHolder<MybankCreditLoanApproveackConfirmResponse> response) {
+    public ResponseResult finalConfirm(AlipayHeader head,
+                                       MybankCreditLoanApproveackConfirmResponse body,
+                                       CustMybankCreditLoanApproveackConfirmRequest request) {
+
+        manager.insertApproveackConfirm(head, body, request);
 
         return success();
     }

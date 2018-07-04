@@ -3,14 +3,15 @@ package com.credit.service.manager;
 
 import com.alipay.sdk.AlipayHeader;
 import com.alipay.sdk.domain.MybankCreditLoanApplyNotifyDomain;
+import com.alipay.sdk.domain.MybankCreditLoanApproveackNotifyDomain;
 import com.alipay.sdk.response.MybankCreditLoanApplyNotifyResponse;
 import com.alipay.sdk.response.MybankCreditLoanApproveUploadResponse;
+import com.alipay.sdk.response.MybankCreditLoanApproveackConfirmResponse;
+import com.alipay.sdk.response.MybankCreditLoanApproveackNotifyResponse;
 import com.credit.service.dao.*;
-import com.credit.service.model.entity.BankCreditApproveUploadRequest;
-import com.credit.service.model.entity.BankCreditBodyResponse;
-import com.credit.service.model.entity.BankCreditHeaderRequest;
-import com.credit.service.model.entity.BankCreditHeaderResponse;
+import com.credit.service.model.entity.*;
 import common.credit.request.CustMybankCreditLoanApproveUploadRequest;
+import common.credit.request.CustMybankCreditLoanApproveackConfirmRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -98,12 +99,51 @@ public class BankCreditManager {
         approveUploadRequestMapper.insertSelective(custRequest);
     }
 
-    public void insertApproackNotify() {
+
+    @Transactional
+    public void insertApproveackNotify(AlipayHeader head,
+                                       MybankCreditLoanApproveackNotifyDomain body,
+                                       MybankCreditLoanApproveackNotifyResponse response) {
+
+        BankCreditHeaderResponse headerResponse = new BankCreditHeaderResponse();
+        BeanUtils.copyProperties(head, headerResponse);
+        headerResponseMapper.insertSelective(headerResponse);
+
+        BankCreditBodyResponse bodyResponse = new BankCreditBodyResponse();
+        bodyResponse.setApplyNo(body.getApplyNo());
+        bodyResponse.setRequestId(body.getRequestId());
+        bodyResponse.setResultCode(response.getResultInfo().getResultCode());
+        bodyResponse.setResultMsg(response.getResultInfo().getResultMsg());
+        bodyResponse.setRetry(response.getResultInfo().getRetry());
+        bodyResponseMapper.insertSelective(bodyResponse);
+
+
+        BankCreditApproveackNotifyRequest approveackNotifyRequest = new BankCreditApproveackNotifyRequest();
+        BeanUtils.copyProperties(body, approveackNotifyRequest);
+        approveackNotifyRequestMapper.insertSelective(approveackNotifyRequest);
 
     }
 
-    public void insertApproveackConfirm() {
+    @Transactional
+    public void insertApproveackConfirm(AlipayHeader head,
+                                        MybankCreditLoanApproveackConfirmResponse body,
+                                        CustMybankCreditLoanApproveackConfirmRequest request) {
 
+
+        BankCreditHeaderResponse headerResponse = new BankCreditHeaderResponse();
+        BeanUtils.copyProperties(head, headerResponse);
+        headerResponseMapper.insertSelective(headerResponse);
+
+        BankCreditBodyResponse bodyResponse = new BankCreditBodyResponse();
+        bodyResponse.setApplyNo(body.getApplyNo());
+        bodyResponse.setRequestId(body.getRequestId());
+        bodyResponse.setResultCode(body.getResultInfo().getResultCode());
+        bodyResponse.setResultMsg(body.getResultInfo().getResultMsg());
+        bodyResponse.setRetry(body.getResultInfo().getRetry());
+        bodyResponseMapper.insertSelective(bodyResponse);
+
+        BankCreditApproveackConfirmRequest approveackConfirmRequest = new BankCreditApproveackConfirmRequest();
+        BeanUtils.copyProperties(request, approveackConfirmRequest);
+        approveackConfirmRequestMapper.insertSelective(approveackConfirmRequest);
     }
-
 }

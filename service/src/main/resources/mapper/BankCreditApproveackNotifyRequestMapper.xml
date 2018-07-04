@@ -6,17 +6,17 @@
       WARNING - @mbg.generated
     -->
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="requestId" property="requestid" jdbcType="VARCHAR" />
-    <result column="applyNo" property="applyno" jdbcType="VARCHAR" />
-    <result column="certNo" property="certno" jdbcType="VARCHAR" />
-    <result column="certName" property="certname" jdbcType="VARCHAR" />
-    <result column="certType" property="certtype" jdbcType="VARCHAR" />
-    <result column="platformAccess" property="platformaccess" jdbcType="VARCHAR" />
-    <result column="platformAdmit" property="platformadmit" jdbcType="VARCHAR" />
-    <result column="platformRateLimit" property="platformratelimit" jdbcType="VARCHAR" />
-    <result column="platformRateBottom" property="platformratebottom" jdbcType="VARCHAR" />
-    <result column="businessModel" property="businessmodel" jdbcType="VARCHAR" />
-    <result column="extInfo" property="extinfo" jdbcType="VARCHAR" />
+    <result column="requestId" property="requestId" jdbcType="VARCHAR" />
+    <result column="applyNo" property="applyNo" jdbcType="VARCHAR" />
+    <result column="certNo" property="certNo" jdbcType="VARCHAR" />
+    <result column="certName" property="certName" jdbcType="VARCHAR" />
+    <result column="certType" property="certType" jdbcType="VARCHAR" />
+    <result column="platformAccess" property="platformAccess" jdbcType="VARCHAR" />
+    <result column="platformAdmit" property="platformAdmit" jdbcType="VARCHAR" />
+    <result column="platformRateLimit" property="platformRateLimit" jdbcType="VARCHAR" />
+    <result column="platformRateBottom" property="platformRateBottom" jdbcType="VARCHAR" />
+    <result column="businessModel" property="businessModel" jdbcType="VARCHAR" />
+    <result column="extInfo" property="extInfo" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
@@ -194,7 +194,7 @@
   </update>
 
   <insert id="insertSelective" parameterType="com.credit.service.model.entity.BankCreditApproveackNotifyRequest" >
-    insert into bank_credit_header_request
+    insert into bank_credit_approveack_notify_request
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -235,7 +235,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="requestId != null" >
         #{requestId,jdbcType=VARCHAR},

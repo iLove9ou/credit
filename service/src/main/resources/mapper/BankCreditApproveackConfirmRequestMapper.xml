@@ -178,7 +178,7 @@
   </update>
 
   <insert id="insertSelective" parameterType="com.credit.service.model.entity.BankCreditApproveackConfirmRequest" >
-    insert into bank_credit_header_request
+    insert into bank_credit_approveack_confirm_request
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="requestId != null" >
         requestId,
