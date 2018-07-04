@@ -1,6 +1,7 @@
 package com.credit.gateway.impl;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alipay.sdk.AlipayHeader;
 import com.alipay.sdk.ParametersHolder;
 import com.alipay.sdk.domain.MybankCreditLoanApplyNotifyDomain;
 import com.alipay.sdk.domain.MybankCreditLoanApproveackNotifyDomain;
@@ -24,8 +25,8 @@ public class ConsumerCreditBankLoanService {
      * 初审通知请求，网商银行-银行机构
      * 网商银行发起，银行机构接收
      */
-    public ResponseResult applyNotify(ParametersHolder<MybankCreditLoanApplyNotifyDomain> parametersHolder, MybankCreditLoanApplyNotifyResponse response) {
-        return creditBankLoanService.applyNotify(parametersHolder, response);
+    public ResponseResult applyNotify(AlipayHeader head, MybankCreditLoanApplyNotifyDomain domain, MybankCreditLoanApplyNotifyResponse response) {
+        return creditBankLoanService.applyNotify(head, domain, response);
     }
 
     /*

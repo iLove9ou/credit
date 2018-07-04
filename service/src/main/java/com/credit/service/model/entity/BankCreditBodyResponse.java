@@ -4,97 +4,71 @@ public class BankCreditBodyResponse {
 
     private Long id;
 
-    private String requestid;
+    private String applyNo;
 
-    private String resultcode;
+    private String requestId;
 
-    private String resultmsg;
+    private String resultCode;
 
-    private String resultstatus;
+    private String resultMsg;
 
-    private Integer retry;
+    private String resultStatus;
 
-    /**
-     * @return id
-     */
+    private String retry;
+
     public Long getId() {
         return id;
     }
 
-    /**
-     * @param id
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * @return requestId
-     */
-    public String getRequestid() {
-        return requestid;
+    public String getApplyNo() {
+        return applyNo;
     }
 
-    /**
-     * @param requestid
-     */
-    public void setRequestid(String requestid) {
-        this.requestid = requestid;
+    public void setApplyNo(String applyNo) {
+        this.applyNo = applyNo;
     }
 
-    /**
-     * @return resultCode
-     */
-    public String getResultcode() {
-        return resultcode;
+    public String getRequestId() {
+        return requestId;
     }
 
-    /**
-     * @param resultcode
-     */
-    public void setResultcode(String resultcode) {
-        this.resultcode = resultcode;
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
-    /**
-     * @return resultMsg
-     */
-    public String getResultmsg() {
-        return resultmsg;
+    public String getResultCode() {
+        return resultCode;
     }
 
-    /**
-     * @param resultmsg
-     */
-    public void setResultmsg(String resultmsg) {
-        this.resultmsg = resultmsg;
+    public void setResultCode(String resultCode) {
+        this.resultCode = resultCode;
     }
 
-    /**
-     * @return resultStatus
-     */
-    public String getResultstatus() {
-        return resultstatus;
+    public String getResultMsg() {
+        return resultMsg;
     }
 
-    /**
-     * @param resultstatus
-     */
-    public void setResultstatus(String resultstatus) {
-        this.resultstatus = resultstatus;
+    public void setResultMsg(String resultMsg) {
+        this.resultMsg = resultMsg;
     }
 
-    /**
-     * @return retry
-     */
-    public Integer getRetry() {
+    public String getResultStatus() {
+        return resultStatus;
+    }
+
+    public void setResultStatus(String resultStatus) {
+        this.resultStatus = resultStatus;
+    }
+
+    public String getRetry() {
         return retry;
     }
 
-    /**
-     * @param retry
-     */
-    public void setRetry(Integer retry) {
+    public void setRetry(String retry) {
         this.retry = retry;
     }
 }

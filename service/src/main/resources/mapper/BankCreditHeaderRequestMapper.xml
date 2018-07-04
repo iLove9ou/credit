@@ -6,10 +6,10 @@
       WARNING - @mbg.generated
     -->
     <result column="id" property="id" jdbcType="BIGINT" />
-    <result column="appId" property="appid" jdbcType="VARCHAR" />
+    <result column="appId" property="appId" jdbcType="VARCHAR" />
     <result column="function" property="function" jdbcType="VARCHAR" />
-    <result column="reqTime" property="reqtime" jdbcType="VARCHAR" />
-    <result column="reqTimeZone" property="reqtimezone" jdbcType="VARCHAR" />
+    <result column="reqTime" property="reqTime" jdbcType="VARCHAR" />
+    <result column="reqTimeZone" property="reqTimeZone" jdbcType="VARCHAR" />
     <result column="reqMsgId" property="reqmsgid" jdbcType="VARCHAR" />
     <result column="signType" property="signtype" jdbcType="VARCHAR" />
     <result column="inputCharset" property="inputcharset" jdbcType="VARCHAR" />
@@ -131,26 +131,26 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.appid != null" >
-        appId = #{record.appid,jdbcType=VARCHAR},
+      <if test="record.appId != null" >
+        appId = #{record.appId,jdbcType=VARCHAR},
       </if>
       <if test="record.function != null" >
         function = #{record.function,jdbcType=VARCHAR},
       </if>
-      <if test="record.reqtime != null" >
-        reqTime = #{record.reqtime,jdbcType=VARCHAR},
+      <if test="record.reqTime != null" >
+        reqTime = #{record.reqTime,jdbcType=VARCHAR},
       </if>
-      <if test="record.reqtimezone != null" >
-        reqTimeZone = #{record.reqtimezone,jdbcType=VARCHAR},
+      <if test="record.reqTimeZone != null" >
+        reqTimeZone = #{record.reqTimeZone,jdbcType=VARCHAR},
       </if>
-      <if test="record.reqmsgid != null" >
-        reqMsgId = #{record.reqmsgid,jdbcType=VARCHAR},
+      <if test="record.reqMsgId != null" >
+        reqMsgId = #{record.reqMsgId,jdbcType=VARCHAR},
       </if>
-      <if test="record.signtype != null" >
-        signType = #{record.signtype,jdbcType=VARCHAR},
+      <if test="record.signType != null" >
+        signType = #{record.signType,jdbcType=VARCHAR},
       </if>
-      <if test="record.inputcharset != null" >
-        inputCharset = #{record.inputcharset,jdbcType=VARCHAR},
+      <if test="record.inputCharset != null" >
+        inputCharset = #{record.inputCharset,jdbcType=VARCHAR},
       </if>
       <if test="record.version != null" >
         version = #{record.version,jdbcType=VARCHAR},
@@ -169,10 +169,10 @@
     -->
     update bank_credit_header_request
     set id = #{record.id,jdbcType=BIGINT},
-      appId = #{record.appid,jdbcType=VARCHAR},
+      appId = #{record.appId,jdbcType=VARCHAR},
       function = #{record.function,jdbcType=VARCHAR},
-      reqTime = #{record.reqtime,jdbcType=VARCHAR},
-      reqTimeZone = #{record.reqtimezone,jdbcType=VARCHAR},
+      reqTime = #{record.reqTime,jdbcType=VARCHAR},
+      reqTimeZone = #{record.reqTimeZone,jdbcType=VARCHAR},
       reqMsgId = #{record.reqmsgid,jdbcType=VARCHAR},
       signType = #{record.signtype,jdbcType=VARCHAR},
       inputCharset = #{record.inputcharset,jdbcType=VARCHAR},
@@ -198,26 +198,26 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="appid != null" >
-        appid,
+      <if test="appId != null" >
+        appId,
       </if>
       <if test="function != null" >
         function,
       </if>
-      <if test="reqtime != null" >
-        reqtime,
+      <if test="reqTime != null" >
+        reqTime,
       </if>
-      <if test="reqtimezone != null" >
-        reqtimezone,
+      <if test="reqTimeZone != null" >
+        reqTimeZone,
       </if>
-      <if test="reqmsgid != null" >
-        reqmsgid,
+      <if test="reqMsgId != null" >
+        reqMsgId,
       </if>
-      <if test="signtype != null" >
-        signtype,
+      <if test="signType != null" >
+        signType,
       </if>
-      <if test="inputcharset != null" >
-        inputcharset,
+      <if test="inputCharset != null" >
+        inputCharset,
       </if>
       <if test="version != null" >
         version,
@@ -230,29 +230,29 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="appid != null" >
-        #{appid,jdbcType=VARCHAR},
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
       </if>
       <if test="function != null" >
         #{function,jdbcType=VARCHAR},
       </if>
-      <if test="reqtime != null" >
-        #{reqtime,jdbcType=VARCHAR},
+      <if test="reqTime != null" >
+        #{reqTime,jdbcType=VARCHAR},
       </if>
-      <if test="reqtimezone != null" >
-        #{reqtimezone,jdbcType=VARCHAR},
+      <if test="reqTimeZone != null" >
+        #{reqTimeZone,jdbcType=VARCHAR},
       </if>
-      <if test="signtype != null" >
-        #{signtype,jdbcType=VARCHAR},
+      <if test="reqMsgId != null" >
+        #{reqMsgId,jdbcType=VARCHAR},
       </if>
-      <if test="inputcharset != null" >
-        #{inputcharset,jdbcType=VARCHAR},
+      <if test="signType != null" >
+        #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCharset != null" >
+        #{inputCharset,jdbcType=VARCHAR},
       </if>
       <if test="version != null" >
         #{version,jdbcType=VARCHAR},
-      </if>
-      <if test="inputcharset != null" >
-        #{inputcharset,jdbcType=VARCHAR},
       </if>
       <if test="reserve != null" >
         #{reserve,jdbcType=VARCHAR}

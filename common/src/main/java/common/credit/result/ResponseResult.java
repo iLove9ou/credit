@@ -1,7 +1,9 @@
 package common.credit.result;
 
 
-public class ResponseResult {
+import java.io.Serializable;
+
+public class ResponseResult implements Serializable {
 
     //返回码
     private String code;

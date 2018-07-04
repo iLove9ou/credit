@@ -1,5 +1,6 @@
 package com.credit.service.impl;
 
+import com.alipay.sdk.AlipayHeader;
 import com.alipay.sdk.ParametersHolder;
 import com.alipay.sdk.domain.MybankCreditLoanApplyNotifyDomain;
 import com.alipay.sdk.domain.MybankCreditLoanApproveackNotifyDomain;
@@ -15,11 +16,12 @@ import common.credit.enums.BizErrorCode;
 import common.credit.format.Document;
 import common.credit.format.DocumentInput;
 import common.credit.format.ResultInfo;
+import common.credit.result.BaseService;
 import common.credit.result.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @com.alibaba.dubbo.config.annotation.Service(version = "1.0.0")
-public class CreditBankLoanServiceImpl implements CreditBankLoanService {
+public class CreditBankLoanServiceImpl extends BaseService implements CreditBankLoanService {
 
     @Autowired
     private BankCreditManager manager;
@@ -85,30 +87,36 @@ public class CreditBankLoanServiceImpl implements CreditBankLoanService {
     }
 
     @Override
-    public ResponseResult applyNotify(ParametersHolder<MybankCreditLoanApplyNotifyDomain> parametersHolder,
-                                MybankCreditLoanApplyNotifyResponse response) {
+    public ResponseResult applyNotify(AlipayHeader head,
+                                      MybankCreditLoanApplyNotifyDomain domain,
+                                      MybankCreditLoanApplyNotifyResponse response) {
 
 
+        manager.insertApplyNotify(head, domain, response);
 
-        return null;
+        return success();
     }
 
     @Override
     public ResponseResult approveUpload(MybankCreditLoanApproveUploadRequest request,
                                   ParametersHolder<MybankCreditLoanApproveUploadResponse> response) {
-        return null;
+
+        return success();
+
     }
 
     @Override
     public ResponseResult finalNotify(ParametersHolder<MybankCreditLoanApproveackNotifyDomain> parametersHolder,
                                       MybankCreditLoanApproveackNotifyResponse response) {
-        return null;
+
+        return success();
     }
 
     @Override
     public ResponseResult finalConfirm(MybankCreditLoanApproveackConfirmRequest request,
                                  ParametersHolder<MybankCreditLoanApproveackConfirmResponse> response) {
-        return null;
+
+        return success();
     }
 
 }

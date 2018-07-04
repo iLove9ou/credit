@@ -10,7 +10,7 @@
     <result column="resultCode" property="resultcode" jdbcType="VARCHAR" />
     <result column="resultMsg" property="resultmsg" jdbcType="VARCHAR" />
     <result column="resultStatus" property="resultstatus" jdbcType="VARCHAR" />
-    <result column="retry" property="retry" jdbcType="INTEGER" />
+    <result column="retry" property="retry" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
@@ -139,7 +139,7 @@
         resultStatus = #{record.resultstatus,jdbcType=VARCHAR},
       </if>
       <if test="record.retry != null" >
-        retry = #{record.retry,jdbcType=INTEGER},
+        retry = #{record.retry,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -156,7 +156,7 @@
       resultCode = #{record.resultcode,jdbcType=VARCHAR},
       resultMsg = #{record.resultmsg,jdbcType=VARCHAR},
       resultStatus = #{record.resultstatus,jdbcType=VARCHAR},
-      retry = #{record.retry,jdbcType=INTEGER}
+      retry = #{record.retry,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -170,61 +170,41 @@
     where requestId=#{requestId}
   </select>
 
-  <insert id="insertSelective" parameterType="com.credit.service.model.entity.BankCreditHeaderResponse" >
-    insert into bank_credit_header_response
+  <insert id="insertSelective" parameterType="com.credit.service.model.entity.BankCreditBodyResponse" >
+    insert into bank_credit_body_response
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="appid != null" >
-        appid,
+      <if test="applyNo != null" >
+        applyNo,
       </if>
-      <if test="function != null" >
-        function,
+      <if test="requestId != null" >
+        requestId,
       </if>
-      <if test="resptime != null" >
-        resptime,
+      <if test="resultCode != null" >
+        resultCode,
       </if>
-      <if test="resptimezone != null" >
-        resptimezone,
+      <if test="resultMsg != null" >
+        resultMsg,
       </if>
-      <if test="signtype != null" >
-        signtype,
-      </if>
-      <if test="inputcharset != null" >
-        inputcharset,
-      </if>
-      <if test="version != null" >
-        version,
-      </if>
-      <if test="reserve != null" >
-        reserve,
+      <if test="retry != null" >
+        retry
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="appid != null" >
-        #{appid,jdbcType=VARCHAR},
+
+      <if test="applyNo != null" >
+        #{applyNo,jdbcType=VARCHAR},
       </if>
-      <if test="function != null" >
-        #{function,jdbcType=VARCHAR},
+      <if test="requestId != null" >
+        #{requestId,jdbcType=VARCHAR},
       </if>
-      <if test="resptime != null" >
-        #{resptime,jdbcType=VARCHAR},
+      <if test="resultCode != null" >
+        #{resultCode,jdbcType=VARCHAR},
       </if>
-      <if test="resptimezone != null" >
-        #{resptimezone,jdbcType=VARCHAR},
+      <if test="resultMsg != null" >
+        #{resultMsg,jdbcType=VARCHAR},
       </if>
-      <if test="signtype != null" >
-        #{signtype,jdbcType=VARCHAR},
-      </if>
-      <if test="inputcharset != null" >
-        #{inputcharset,jdbcType=VARCHAR},
-      </if>
-      <if test="version != null" >
-        #{version,jdbcType=VARCHAR},
-      </if>
-      <if test="inputcharset != null" >
-        #{inputcharset,jdbcType=VARCHAR},
-      </if>
-      <if test="reserve != null" >
-        #{reserve,jdbcType=VARCHAR},
+      <if test="retry != null" >
+        #{resultMsg,jdbcType=VARCHAR}
       </if>
     </trim>
   </insert>

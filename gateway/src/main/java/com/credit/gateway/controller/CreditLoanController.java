@@ -14,6 +14,8 @@ import com.credit.gateway.annotation.Sign;
 import com.credit.gateway.impl.ConsumerCreditBankLoanService;
 import common.credit.constants.Constants;
 import common.credit.enums.BizErrorCode;
+import common.credit.result.BaseService;
+import common.credit.result.ResponseResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class CreditLoanController {
+public class CreditLoanController extends BaseService {
 
     private final static Logger logger = LoggerFactory.getLogger(CreditLoanController.class);
 
@@ -36,9 +38,12 @@ public class CreditLoanController {
      * 初审通知请求，网商银行-银行机构
      * 网商银行发起，银行机构接收
      */
-    @PostMapping(value = "/apply_notify", consumes = "application/xml", produces = MediaType.APPLICATION_XML_VALUE)
+    @PostMapping(value = "/apply_notify", consumes = "application/xml")
     @Sign
-    public String applyNotify(@RequestBody String request) {
+    public ResponseResult applyNotify(@RequestBody String request) {
+
+        logger.info("apply_notify request: ", request);
+
         // TODO 数据格式校验
         // TODO 查看当前记录是否已存在，当前状态校验
 
@@ -69,13 +74,15 @@ public class CreditLoanController {
                             }
 
                             MybankCreditLoanApplyNotifyDomain domain = parametersHolder.getBody();
+                            AlipayHeader head = parametersHolder.getHeader();
                             MybankCreditLoanApplyNotifyResponse response = new MybankCreditLoanApplyNotifyResponse();
                             response.setResultInfo(resultInfo);
                             response.setRequestId(domain.getRequestId());
                             response.setApplyNo(domain.getApplyNo());
 
-                            creditBankLoanService.applyNotify(parametersHolder, response);
+                            ResponseResult result = creditBankLoanService.applyNotify(head, domain, response);
 
+                            logger.info("apply_notify result=", result);
                             return response;
                         }
                     });
@@ -83,9 +90,12 @@ public class CreditLoanController {
             logger.info("apply_notify excute ok: ", respXml);
         } catch (AlipayApiException e) {
             logger.error("apply_notify excute error: ", e);
+
+            return error(e.getErrCode(), e.getMessage());
+
         }
 
-        return respXml;
+        return success();
     }
 
     /*
@@ -172,7 +182,8 @@ public class CreditLoanController {
             }
         }
 
-        creditBankLoanService.approveUpload(request, response);
+        ResponseResult result = creditBankLoanService.approveUpload(request, response);
+        logger.info("approve_upload result=", result);
         return response;
 
     }

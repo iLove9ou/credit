@@ -3,160 +3,100 @@ package com.credit.service.model.entity;
 public class BankCreditHeaderResponse {
     private Long id;
 
-    private String appid;
+    private String appId;
 
     private String function;
 
-    private String resptime;
+    private String respTime;
 
-    private String resptimezone;
+    private String respTimeZone;
 
-    private String reqmsgid;
+    private String reqMsgId;
 
-    private String signtype;
+    private String signType;
 
-    private String inputcharset;
+    private String inputCharset;
 
     private String version;
 
     private String reserve;
 
-    /**
-     * @return id
-     */
     public Long getId() {
         return id;
     }
 
-    /**
-     * @param id
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * @return appId
-     */
-    public String getAppid() {
-        return appid;
+    public String getAppId() {
+        return appId;
     }
 
-    /**
-     * @param appid
-     */
-    public void setAppid(String appid) {
-        this.appid = appid;
+    public void setAppId(String appId) {
+        this.appId = appId;
     }
 
-    /**
-     * @return function
-     */
     public String getFunction() {
         return function;
     }
 
-    /**
-     * @param function
-     */
     public void setFunction(String function) {
         this.function = function;
     }
 
-    /**
-     * @return respTime
-     */
-    public String getResptime() {
-        return resptime;
+    public String getRespTime() {
+        return respTime;
     }
 
-    /**
-     * @param resptime
-     */
-    public void setResptime(String resptime) {
-        this.resptime = resptime;
+    public void setRespTime(String respTime) {
+        this.respTime = respTime;
     }
 
-    /**
-     * @return respTimeZone
-     */
-    public String getResptimezone() {
-        return resptimezone;
+    public String getRespTimeZone() {
+        return respTimeZone;
     }
 
-    /**
-     * @param resptimezone
-     */
-    public void setResptimezone(String resptimezone) {
-        this.resptimezone = resptimezone;
+    public void setRespTimeZone(String respTimeZone) {
+        this.respTimeZone = respTimeZone;
     }
 
-    /**
-     * @return reqMsgId
-     */
-    public String getReqmsgid() {
-        return reqmsgid;
+    public String getReqMsgId() {
+        return reqMsgId;
     }
 
-    /**
-     * @param reqmsgid
-     */
-    public void setReqmsgid(String reqmsgid) {
-        this.reqmsgid = reqmsgid;
+    public void setReqMsgId(String reqMsgId) {
+        this.reqMsgId = reqMsgId;
     }
 
-    /**
-     * @return signType
-     */
-    public String getSigntype() {
-        return signtype;
+    public String getSignType() {
+        return signType;
     }
 
-    /**
-     * @param signtype
-     */
-    public void setSigntype(String signtype) {
-        this.signtype = signtype;
+    public void setSignType(String signType) {
+        this.signType = signType;
     }
 
-    /**
-     * @return inputCharset
-     */
-    public String getInputcharset() {
-        return inputcharset;
+    public String getInputCharset() {
+        return inputCharset;
     }
 
-    /**
-     * @param inputcharset
-     */
-    public void setInputcharset(String inputcharset) {
-        this.inputcharset = inputcharset;
+    public void setInputCharset(String inputCharset) {
+        this.inputCharset = inputCharset;
     }
 
-    /**
-     * @return version
-     */
     public String getVersion() {
         return version;
     }
 
-    /**
-     * @param version
-     */
     public void setVersion(String version) {
         this.version = version;
     }
 
-    /**
-     * @return reserve
-     */
     public String getReserve() {
         return reserve;
     }
 
-    /**
-     * @param reserve
-     */
     public void setReserve(String reserve) {
         this.reserve = reserve;
     }

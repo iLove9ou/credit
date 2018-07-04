@@ -1,6 +1,7 @@
 package common.credit.dubbo;
 
 
+import com.alipay.sdk.AlipayHeader;
 import com.alipay.sdk.ParametersHolder;
 import com.alipay.sdk.domain.MybankCreditLoanApplyNotifyDomain;
 import com.alipay.sdk.domain.MybankCreditLoanApproveackNotifyDomain;
@@ -17,7 +18,8 @@ public interface CreditBankLoanService {
     /*
      * 初审通知请求，网商银行-银行机构
      */
-    public ResponseResult applyNotify(ParametersHolder<MybankCreditLoanApplyNotifyDomain> parametersHolder,
+    public ResponseResult applyNotify(AlipayHeader head,
+                                      MybankCreditLoanApplyNotifyDomain domain,
                                       MybankCreditLoanApplyNotifyResponse response);
 
     /*

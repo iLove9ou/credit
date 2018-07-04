@@ -193,58 +193,67 @@
   <insert id="insertSelective" parameterType="com.credit.service.model.entity.BankCreditHeaderResponse" >
     insert into bank_credit_header_response
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="appid != null" >
-        appid,
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appId != null" >
+        appId,
       </if>
       <if test="function != null" >
         function,
       </if>
-      <if test="resptime != null" >
-        resptime,
+      <if test="respTime != null" >
+        respTime,
       </if>
-      <if test="resptimezone != null" >
-        resptimezone,
+      <if test="respTimeZone != null" >
+        respTimeZone,
       </if>
-      <if test="signtype != null" >
-        signtype,
+      <if test="reqMsgId != null" >
+        reqMsgId,
       </if>
-      <if test="inputcharset != null" >
-        inputcharset,
+      <if test="signType != null" >
+        signType,
+      </if>
+      <if test="inputCharset != null" >
+        inputCharset,
       </if>
       <if test="version != null" >
         version,
       </if>
       <if test="reserve != null" >
-        reserve,
+        reserve
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="appid != null" >
-        #{appid,jdbcType=VARCHAR},
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
       </if>
       <if test="function != null" >
         #{function,jdbcType=VARCHAR},
       </if>
-      <if test="resptime != null" >
-        #{resptime,jdbcType=VARCHAR},
+      <if test="respTime != null" >
+        #{respTime,jdbcType=VARCHAR},
       </if>
-      <if test="resptimezone != null" >
-        #{resptimezone,jdbcType=VARCHAR},
+      <if test="respTimeZone != null" >
+        #{respTimeZone,jdbcType=VARCHAR},
       </if>
-      <if test="signtype != null" >
-        #{signtype,jdbcType=VARCHAR},
+      <if test="reqMsgId != null" >
+        #{reqMsgId,jdbcType=VARCHAR},
       </if>
-      <if test="inputcharset != null" >
-        #{inputcharset,jdbcType=VARCHAR},
+      <if test="signType != null" >
+        #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCharset != null" >
+        #{inputCharset,jdbcType=VARCHAR},
       </if>
       <if test="version != null" >
         #{version,jdbcType=VARCHAR},
       </if>
-      <if test="inputcharset != null" >
-        #{inputcharset,jdbcType=VARCHAR},
-      </if>
       <if test="reserve != null" >
-        #{reserve,jdbcType=VARCHAR},
+        #{reserve,jdbcType=VARCHAR}
       </if>
     </trim>
   </insert>

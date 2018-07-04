@@ -2,7 +2,6 @@ package com.credit.service.manager;
 
 
 import com.alipay.sdk.AlipayHeader;
-import com.alipay.sdk.ParametersHolder;
 import com.alipay.sdk.domain.MybankCreditLoanApplyNotifyDomain;
 import com.alipay.sdk.response.MybankCreditLoanApplyNotifyResponse;
 import com.credit.service.dao.*;
@@ -15,6 +14,8 @@ import common.credit.constants.Constants;
 import common.credit.enums.CharsetEnum;
 import common.credit.enums.SignTypeEnum;
 import common.credit.format.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,9 @@ import javax.annotation.Resource;
 
 @Component
 public class BankCreditManager {
+
+    private final static Logger logger = LoggerFactory.getLogger(BankCreditManager.class);
+
 
     @Resource
     private BankCreditHeaderRequestMapper headerRequestMapper;
@@ -100,14 +104,13 @@ public class BankCreditManager {
     public void addDocument(DocumentInput documentInput) {
 
         BankCreditHeaderRequest headerRequest = new BankCreditHeaderRequest();
-        headerRequest.setAppid(documentInput.getRequest().getHead().getAppId());
+        headerRequest.setAppId(documentInput.getRequest().getHead().getAppId());
         headerRequest.setFunction(documentInput.getRequest().getHead().getFunction());
-        headerRequest.setInputcharset(documentInput.getRequest().getHead().getInputCharset());
-        headerRequest.setReqmsgid(documentInput.getRequest().getHead().getReqMsgId());
-        headerRequest.setReqtime(documentInput.getRequest().getHead().getRespTime());
+        headerRequest.setReqMsgId(documentInput.getRequest().getHead().getReqMsgId());
+        headerRequest.setReqTime(documentInput.getRequest().getHead().getRespTime());
         headerRequest.setVersion(documentInput.getRequest().getHead().getVersion());
-        headerRequest.setSigntype(documentInput.getRequest().getHead().getSignType());
-        headerRequest.setInputcharset(documentInput.getRequest().getHead().getInputCharset());
+        headerRequest.setSignType(documentInput.getRequest().getHead().getSignType());
+        headerRequest.setInputCharset(documentInput.getRequest().getHead().getInputCharset());
         headerRequestMapper.insertSelective(headerRequest);
 
         BankCreditApplyNotifyRequest applyNotifyRequest = new BankCreditApplyNotifyRequest();
@@ -120,21 +123,28 @@ public class BankCreditManager {
     }
 
     @Transactional
-    public void insertApplyNotify(ParametersHolder<MybankCreditLoanApplyNotifyDomain> parametersHolder,
+    public void insertApplyNotify(AlipayHeader head,
+                                  MybankCreditLoanApplyNotifyDomain domain,
                                   MybankCreditLoanApplyNotifyResponse response) {
 
         BankCreditHeaderRequest headerRequest = new BankCreditHeaderRequest();
-        MybankCreditLoanApplyNotifyDomain domain = parametersHolder.getBody();
-        AlipayHeader header = parametersHolder.getHeader();
-        BeanUtils.copyProperties(headerRequest, header);
+        MybankCreditLoanApplyNotifyDomain body = domain;
+        AlipayHeader header = head;
+        BeanUtils.copyProperties(header, headerRequest);
+
         headerRequestMapper.insertSelective(headerRequest);
 
         BankCreditHeaderResponse headerResponse = new BankCreditHeaderResponse();
-        BeanUtils.copyProperties(headerResponse, header);
+        BeanUtils.copyProperties(header, headerResponse);
         headerResponseMapper.insertSelective(headerResponse);
 
         BankCreditBodyResponse bodyResponse = new BankCreditBodyResponse();
-        BeanUtils.copyProperties(bodyResponse, response);
+
+        bodyResponse.setApplyNo(response.getApplyNo());
+        bodyResponse.setRequestId(response.getRequestId());
+        bodyResponse.setResultCode(response.getResultInfo().getResultCode());
+        bodyResponse.setResultMsg(response.getResultInfo().getResultMsg());
+        bodyResponse.setRetry(response.getResultInfo().getRetry());
         bodyResponseMapper.insertSelective(bodyResponse);
 
     }

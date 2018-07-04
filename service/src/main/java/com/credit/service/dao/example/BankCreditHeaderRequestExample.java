@@ -315,62 +315,62 @@ public class BankCreditHeaderRequestExample {
         }
 
         public Criteria andReqtimeEqualTo(String value) {
-            addCriterion("reqTime =", value, "reqtime");
+            addCriterion("reqTime =", value, "reqTime");
             return (Criteria) this;
         }
 
         public Criteria andReqtimeNotEqualTo(String value) {
-            addCriterion("reqTime <>", value, "reqtime");
+            addCriterion("reqTime <>", value, "reqTime");
             return (Criteria) this;
         }
 
         public Criteria andReqtimeGreaterThan(String value) {
-            addCriterion("reqTime >", value, "reqtime");
+            addCriterion("reqTime >", value, "reqTime");
             return (Criteria) this;
         }
 
         public Criteria andReqtimeGreaterThanOrEqualTo(String value) {
-            addCriterion("reqTime >=", value, "reqtime");
+            addCriterion("reqTime >=", value, "reqTime");
             return (Criteria) this;
         }
 
         public Criteria andReqtimeLessThan(String value) {
-            addCriterion("reqTime <", value, "reqtime");
+            addCriterion("reqTime <", value, "reqTime");
             return (Criteria) this;
         }
 
         public Criteria andReqtimeLessThanOrEqualTo(String value) {
-            addCriterion("reqTime <=", value, "reqtime");
+            addCriterion("reqTime <=", value, "reqTime");
             return (Criteria) this;
         }
 
         public Criteria andReqtimeLike(String value) {
-            addCriterion("reqTime like", value, "reqtime");
+            addCriterion("reqTime like", value, "reqTime");
             return (Criteria) this;
         }
 
         public Criteria andReqtimeNotLike(String value) {
-            addCriterion("reqTime not like", value, "reqtime");
+            addCriterion("reqTime not like", value, "reqTime");
             return (Criteria) this;
         }
 
         public Criteria andReqtimeIn(List<String> values) {
-            addCriterion("reqTime in", values, "reqtime");
+            addCriterion("reqTime in", values, "reqTime");
             return (Criteria) this;
         }
 
         public Criteria andReqtimeNotIn(List<String> values) {
-            addCriterion("reqTime not in", values, "reqtime");
+            addCriterion("reqTime not in", values, "reqTime");
             return (Criteria) this;
         }
 
         public Criteria andReqtimeBetween(String value1, String value2) {
-            addCriterion("reqTime between", value1, value2, "reqtime");
+            addCriterion("reqTime between", value1, value2, "reqTime");
             return (Criteria) this;
         }
 
         public Criteria andReqtimeNotBetween(String value1, String value2) {
-            addCriterion("reqTime not between", value1, value2, "reqtime");
+            addCriterion("reqTime not between", value1, value2, "reqTime");
             return (Criteria) this;
         }
 
@@ -385,62 +385,62 @@ public class BankCreditHeaderRequestExample {
         }
 
         public Criteria andReqtimezoneEqualTo(String value) {
-            addCriterion("reqTimeZone =", value, "reqtimezone");
+            addCriterion("reqTimeZone =", value, "reqTimeZone");
             return (Criteria) this;
         }
 
         public Criteria andReqtimezoneNotEqualTo(String value) {
-            addCriterion("reqTimeZone <>", value, "reqtimezone");
+            addCriterion("reqTimeZone <>", value, "reqTimeZone");
             return (Criteria) this;
         }
 
         public Criteria andReqtimezoneGreaterThan(String value) {
-            addCriterion("reqTimeZone >", value, "reqtimezone");
+            addCriterion("reqTimeZone >", value, "reqTimeZone");
             return (Criteria) this;
         }
 
         public Criteria andReqtimezoneGreaterThanOrEqualTo(String value) {
-            addCriterion("reqTimeZone >=", value, "reqtimezone");
+            addCriterion("reqTimeZone >=", value, "reqTimeZone");
             return (Criteria) this;
         }
 
         public Criteria andReqtimezoneLessThan(String value) {
-            addCriterion("reqTimeZone <", value, "reqtimezone");
+            addCriterion("reqTimeZone <", value, "reqTimeZone");
             return (Criteria) this;
         }
 
         public Criteria andReqtimezoneLessThanOrEqualTo(String value) {
-            addCriterion("reqTimeZone <=", value, "reqtimezone");
+            addCriterion("reqTimeZone <=", value, "reqTimeZone");
             return (Criteria) this;
         }
 
         public Criteria andReqtimezoneLike(String value) {
-            addCriterion("reqTimeZone like", value, "reqtimezone");
+            addCriterion("reqTimeZone like", value, "reqTimeZone");
             return (Criteria) this;
         }
 
         public Criteria andReqtimezoneNotLike(String value) {
-            addCriterion("reqTimeZone not like", value, "reqtimezone");
+            addCriterion("reqTimeZone not like", value, "reqTimeZone");
             return (Criteria) this;
         }
 
         public Criteria andReqtimezoneIn(List<String> values) {
-            addCriterion("reqTimeZone in", values, "reqtimezone");
+            addCriterion("reqTimeZone in", values, "reqTimeZone");
             return (Criteria) this;
         }
 
         public Criteria andReqtimezoneNotIn(List<String> values) {
-            addCriterion("reqTimeZone not in", values, "reqtimezone");
+            addCriterion("reqTimeZone not in", values, "reqTimeZone");
             return (Criteria) this;
         }
 
         public Criteria andReqtimezoneBetween(String value1, String value2) {
-            addCriterion("reqTimeZone between", value1, value2, "reqtimezone");
+            addCriterion("reqTimeZone between", value1, value2, "reqTimeZone");
             return (Criteria) this;
         }
 
         public Criteria andReqtimezoneNotBetween(String value1, String value2) {
-            addCriterion("reqTimeZone not between", value1, value2, "reqtimezone");
+            addCriterion("reqTimeZone not between", value1, value2, "reqTimeZone");
             return (Criteria) this;
         }
 
@@ -455,27 +455,27 @@ public class BankCreditHeaderRequestExample {
         }
 
         public Criteria andReqmsgidEqualTo(String value) {
-            addCriterion("reqMsgId =", value, "reqmsgid");
+            addCriterion("reqMsgId =", value, "reqMsgId");
             return (Criteria) this;
         }
 
         public Criteria andReqmsgidNotEqualTo(String value) {
-            addCriterion("reqMsgId <>", value, "reqmsgid");
+            addCriterion("reqMsgId <>", value, "reqMsgId");
             return (Criteria) this;
         }
 
         public Criteria andReqmsgidGreaterThan(String value) {
-            addCriterion("reqMsgId >", value, "reqmsgid");
+            addCriterion("reqMsgId >", value, "reqMsgId");
             return (Criteria) this;
         }
 
         public Criteria andReqmsgidGreaterThanOrEqualTo(String value) {
-            addCriterion("reqMsgId >=", value, "reqmsgid");
+            addCriterion("reqMsgId >=", value, "reqMsgId");
             return (Criteria) this;
         }
 
         public Criteria andReqmsgidLessThan(String value) {
-            addCriterion("reqMsgId <", value, "reqmsgid");
+            addCriterion("reqMsgId <", value, "reqMsgId");
             return (Criteria) this;
         }
 
@@ -485,32 +485,32 @@ public class BankCreditHeaderRequestExample {
         }
 
         public Criteria andReqmsgidLike(String value) {
-            addCriterion("reqMsgId like", value, "reqmsgid");
+            addCriterion("reqMsgId like", value, "reqMsgId");
             return (Criteria) this;
         }
 
         public Criteria andReqmsgidNotLike(String value) {
-            addCriterion("reqMsgId not like", value, "reqmsgid");
+            addCriterion("reqMsgId not like", value, "reqMsgId");
             return (Criteria) this;
         }
 
         public Criteria andReqmsgidIn(List<String> values) {
-            addCriterion("reqMsgId in", values, "reqmsgid");
+            addCriterion("reqMsgId in", values, "reqMsgId");
             return (Criteria) this;
         }
 
         public Criteria andReqmsgidNotIn(List<String> values) {
-            addCriterion("reqMsgId not in", values, "reqmsgid");
+            addCriterion("reqMsgId not in", values, "reqMsgId");
             return (Criteria) this;
         }
 
         public Criteria andReqmsgidBetween(String value1, String value2) {
-            addCriterion("reqMsgId between", value1, value2, "reqmsgid");
+            addCriterion("reqMsgId between", value1, value2, "reqMsgId");
             return (Criteria) this;
         }
 
         public Criteria andReqmsgidNotBetween(String value1, String value2) {
-            addCriterion("reqMsgId not between", value1, value2, "reqmsgid");
+            addCriterion("reqMsgId not between", value1, value2, "reqMsgId");
             return (Criteria) this;
         }
 
@@ -525,62 +525,62 @@ public class BankCreditHeaderRequestExample {
         }
 
         public Criteria andSigntypeEqualTo(String value) {
-            addCriterion("signType =", value, "signtype");
+            addCriterion("signType =", value, "signType");
             return (Criteria) this;
         }
 
         public Criteria andSigntypeNotEqualTo(String value) {
-            addCriterion("signType <>", value, "signtype");
+            addCriterion("signType <>", value, "signType");
             return (Criteria) this;
         }
 
         public Criteria andSigntypeGreaterThan(String value) {
-            addCriterion("signType >", value, "signtype");
+            addCriterion("signType >", value, "signType");
             return (Criteria) this;
         }
 
         public Criteria andSigntypeGreaterThanOrEqualTo(String value) {
-            addCriterion("signType >=", value, "signtype");
+            addCriterion("signType >=", value, "signType");
             return (Criteria) this;
         }
 
         public Criteria andSigntypeLessThan(String value) {
-            addCriterion("signType <", value, "signtype");
+            addCriterion("signType <", value, "signType");
             return (Criteria) this;
         }
 
         public Criteria andSigntypeLessThanOrEqualTo(String value) {
-            addCriterion("signType <=", value, "signtype");
+            addCriterion("signType <=", value, "signType");
             return (Criteria) this;
         }
 
         public Criteria andSigntypeLike(String value) {
-            addCriterion("signType like", value, "signtype");
+            addCriterion("signType like", value, "signType");
             return (Criteria) this;
         }
 
         public Criteria andSigntypeNotLike(String value) {
-            addCriterion("signType not like", value, "signtype");
+            addCriterion("signType not like", value, "signType");
             return (Criteria) this;
         }
 
         public Criteria andSigntypeIn(List<String> values) {
-            addCriterion("signType in", values, "signtype");
+            addCriterion("signType in", values, "signType");
             return (Criteria) this;
         }
 
         public Criteria andSigntypeNotIn(List<String> values) {
-            addCriterion("signType not in", values, "signtype");
+            addCriterion("signType not in", values, "signType");
             return (Criteria) this;
         }
 
         public Criteria andSigntypeBetween(String value1, String value2) {
-            addCriterion("signType between", value1, value2, "signtype");
+            addCriterion("signType between", value1, value2, "signType");
             return (Criteria) this;
         }
 
         public Criteria andSigntypeNotBetween(String value1, String value2) {
-            addCriterion("signType not between", value1, value2, "signtype");
+            addCriterion("signType not between", value1, value2, "signType");
             return (Criteria) this;
         }
 
