@@ -59,7 +59,6 @@ public class BankCreditManager {
         MybankCreditLoanApplyNotifyDomain body = domain;
         AlipayHeader header = head;
         BeanUtils.copyProperties(header, headerRequest);
-
         headerRequestMapper.insertSelective(headerRequest);
 
         BankCreditHeaderResponse headerResponse = new BankCreditHeaderResponse();
@@ -67,7 +66,6 @@ public class BankCreditManager {
         headerResponseMapper.insertSelective(headerResponse);
 
         BankCreditBodyResponse bodyResponse = new BankCreditBodyResponse();
-
         bodyResponse.setApplyNo(response.getApplyNo());
         bodyResponse.setRequestId(response.getRequestId());
         bodyResponse.setResultCode(response.getResultInfo().getResultCode());

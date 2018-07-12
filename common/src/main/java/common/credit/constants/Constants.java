@@ -3,8 +3,6 @@ package common.credit.constants;
 
 public class Constants {
 
-    public static final String nick_name = "nick name";
-
     // 系统版本
     public static final String SYSTEM_VERSION = "1.0.0";
 

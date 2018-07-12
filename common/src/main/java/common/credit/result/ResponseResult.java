@@ -5,14 +5,15 @@ import java.io.Serializable;
 
 public class ResponseResult implements Serializable {
 
-    //返回码
+    // 返回码
     private String code;
 
-    //信息描述
+    // 信息描述
     private String message;
 
-    //业务对象
+    // 业务对象
     private Object data;
+
 
     public ResponseResult() {
     }

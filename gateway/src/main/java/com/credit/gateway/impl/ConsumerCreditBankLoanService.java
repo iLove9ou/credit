@@ -51,8 +51,8 @@ public class ConsumerCreditBankLoanService {
     }
 
     /*
-     * 初审通知请求，网商银行-银行机构
-     * 网商银行发起，银行机构接收
+     * 初审通知请求，银行机构-网商银行
+     * 银行机构发起，网商银行接收
      */
     public ResponseResult finalConfirm(AlipayHeader header,
                                        MybankCreditLoanApproveackConfirmResponse response,

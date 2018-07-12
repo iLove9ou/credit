@@ -54,8 +54,9 @@ public class CreditLoanController extends BaseComponent {
 
         String requestBody = request;
         AlipayTemplate template = new DefaultAlipayTemplate(Constants.APP_ID,
-                Constants.PRIVATE_KEY,
+                Constants.privateKey,
                 Constants.alipayPublicKey);
+
         String respXml = "";
         ParametersHolder reqHolder = new ParametersHolder();
         try {
@@ -115,10 +116,15 @@ public class CreditLoanController extends BaseComponent {
             ParametersHolder respHolder = new ParametersHolder();
             respHolder.setHeader(reqHolder.getHeader());
             MybankCreditLoanApplyNotifyResponse respBody = new MybankCreditLoanApplyNotifyResponse();
+
+            MybankCreditLoanApplyNotifyDomain domain = (MybankCreditLoanApplyNotifyDomain) reqHolder.getBody();
+
             ResultInfo resultInfo = new ResultInfo();
             resultInfo.setResultCode(BizErrorCode.UNKNOW_SYSTEM_ERROR.getCode());
             resultInfo.setResultMsg(BizErrorCode.UNKNOW_SYSTEM_ERROR.getMessage());
             respBody.setResultInfo(resultInfo);
+            respBody.setRequestId(domain.getRequestId());
+            respBody.setApplyNo(domain.getApplyNo());
             respHolder.setBody(respBody);
             return ParserUtil.toxml(respHolder);
         }
